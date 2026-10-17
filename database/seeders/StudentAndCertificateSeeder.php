@@ -255,5 +255,111 @@ class StudentAndCertificateSeeder extends Seeder
                 'status' => 'issued',
             ]
         );
+
+        // 4. Official TECH ERA COMPUTER Student - Rahul Kumar (ADCA - Roll TEC2601001)
+        $userTech = User::updateOrCreate(
+            ['email' => 'student@techeracomputer.in'],
+            [
+                'name' => 'Rahul Kumar',
+                'mobile' => '9162384660',
+                'password' => Hash::make('Student@123'),
+                'role' => 'student',
+                'is_active' => true,
+            ]
+        );
+
+        $studentTech = Student::updateOrCreate(
+            ['registration_no' => 'TEC/2026/001'],
+            [
+                'user_id' => $userTech->id,
+                'centre_id' => $centre->id,
+                'roll_no' => 'TEC2601001',
+                'full_name' => 'RAHUL KUMAR',
+                'father_name' => 'RAJESH KUMAR',
+                'mother_name' => 'SUNITA DEVI',
+                'dob' => '2004-05-12',
+                'gender' => 'male',
+                'mobile' => '9876543211',
+                'email' => 'student@techeracomputer.in',
+                'state_id' => $centre->state_id ?? 1,
+                'district_id' => $centre->district_id ?? 1,
+                'city' => 'Sheikhpura',
+                'address' => 'Sasbahana, Sheikhpura, Bihar - 801105',
+                'pincode' => '801105',
+                'highest_qualification' => '12th Pass (Science)',
+                'academic_session' => '2026',
+                'status' => 'enrolled',
+            ]
+        );
+
+        $admissionTech = Admission::firstOrCreate(
+            [
+                'student_id' => $studentTech->id,
+                'course_id' => $courseAdca->id,
+            ],
+            [
+                'centre_id' => $centre->id,
+                'admission_date' => '2026-01-10',
+                'course_fee' => 7500.00,
+                'discount_amount' => 500.00,
+                'net_fee' => 7000.00,
+                'total_paid' => 4000.00,
+                'status' => 'active',
+                'remarks' => 'Enrolled in ADCA - TECH ERA COMPUTER Main Campus',
+            ]
+        );
+
+        // 5. Official TECH ERA COMPUTER Student 2 - Priya Kumari (DCA - Roll TEC2601002)
+        $userTech2 = User::updateOrCreate(
+            ['email' => 'priya@techeracomputer.in'],
+            [
+                'name' => 'Priya Kumari',
+                'mobile' => '9812345679',
+                'password' => Hash::make('Student@123'),
+                'role' => 'student',
+                'is_active' => true,
+            ]
+        );
+
+        $studentTech2 = Student::updateOrCreate(
+            ['registration_no' => 'TEC/2026/002'],
+            [
+                'user_id' => $userTech2->id,
+                'centre_id' => $centre->id,
+                'roll_no' => 'TEC2601002',
+                'full_name' => 'PRIYA KUMARI',
+                'father_name' => 'SURESH PRASAD',
+                'mother_name' => 'GEETA DEVI',
+                'dob' => '2004-11-20',
+                'gender' => 'female',
+                'mobile' => '9812345679',
+                'email' => 'priya@techeracomputer.in',
+                'state_id' => $centre->state_id ?? 1,
+                'district_id' => $centre->district_id ?? 1,
+                'city' => 'Sheikhpura',
+                'address' => 'Sasbahana, Sheikhpura, Bihar - 801105',
+                'pincode' => '801105',
+                'highest_qualification' => 'Graduation (BCA)',
+                'academic_session' => '2026',
+                'status' => 'enrolled',
+            ]
+        );
+
+        Admission::firstOrCreate(
+            [
+                'student_id' => $studentTech2->id,
+                'course_id' => $courseDca->id,
+            ],
+            [
+                'centre_id' => $centre->id,
+                'admission_date' => '2026-02-01',
+                'course_fee' => 4500.00,
+                'discount_amount' => 0.00,
+                'net_fee' => 4500.00,
+                'total_paid' => 4500.00,
+                'status' => 'approved',
+                'remarks' => 'Enrolled in DCA - Full fee paid',
+            ]
+        );
     }
 }

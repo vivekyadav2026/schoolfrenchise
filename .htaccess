@@ -1,14 +1,16 @@
 # ----------------------------------------------------------------------
-# Drishti Computer Education - Root Directory Protection & Forwarder
+# TECH ERA COMPUTER - Server Root Security & Request Router
 # ----------------------------------------------------------------------
 # If the hosting server DocumentRoot is correctly set to `/public`,
-# this file will not be reached. If DocumentRoot is mistakenly pointed
-# to the project root, this file prevents data leakage and routes to /public.
+# this file will not be reached. If DocumentRoot is pointed to the
+# project root (e.g. shared hosting / public_html), this file blocks
+# access to private source files and seamlessly routes traffic into /public.
 # ----------------------------------------------------------------------
 
-Options -Indexes
+# Disable directory browsing
+Options -Indexes -MultiViews
 
-# Block direct access to hidden files (.env, .git, etc.)
+# Block direct access to hidden files and dotfiles (.env, .git, etc.)
 <FilesMatch "^\.">
     <IfModule mod_authz_core.c>
         Require all denied
@@ -19,17 +21,31 @@ Options -Indexes
     </IfModule>
 </FilesMatch>
 
-# Block access to sensitive configuration and application folders
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Deny access to sensitive root files
-    RewriteRule ^(\.env|\.git|composer\.(json|lock)|package\.(json|lock)|phpunit\.xml|README\.md|DEPLOYMENT_CHECKLIST\.md) - [F,L,NC]
+    # 1. Deny access to hidden dotfiles
+    RewriteRule ^\. - [F,L,NC]
 
-    # Deny access to internal PHP directories
-    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|vendor)/ - [F,L,NC]
+    # 2. Deny access to sensitive root-level files and secrets
+    RewriteRule ^(artisan|composer\.(json|lock)|package\.(json|lock)|phpunit\.xml|vite\.config\.js|\.env.*|.*\.sql|.*\.sqlite|.*\.md|.*\.log|.*\.sh|.*\.bat)$ - [F,L,NC]
 
-    # Route remaining public traffic into public/
+    # 3. Deny access to internal application directories
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage/(framework|logs)|tests|vendor)/ - [F,L,NC]
+
+    # 4. Redirect explicit /public/ URLs to clean root URLs (prevent duplicate content)
+    RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+    RewriteRule ^public/(.*)$ /$1 [L,R=301]
+
+    # 5. Route all public requests into /public folder
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Security Headers (when mod_headers is loaded)
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>

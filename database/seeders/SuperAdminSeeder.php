@@ -12,26 +12,39 @@ class SuperAdminSeeder extends Seeder
 {
     public function run(): void
     {
-        $name = env('SUPER_ADMIN_NAME', 'TECH ERA Super Admin');
-        $email = env('SUPER_ADMIN_EMAIL', 'admin@drishticomputer.com');
-        $password = env('SUPER_ADMIN_PASSWORD', 'Admin@12345');
-        $mobile = env('SUPER_ADMIN_MOBILE', '9942434239');
-
-        $superAdmin = User::updateOrCreate(
-            ['email' => $email],
+        $adminAccounts = [
             [
-                'name' => $name,
-                'mobile' => $mobile,
-                'password' => Hash::make($password),
-                'role' => 'super_admin',
-                'is_active' => true,
-                'email_verified_at' => now(),
-            ]
-        );
+                'name' => 'TECH ERA Super Admin',
+                'email' => 'admin@techeracomputer.in',
+                'password' => 'Admin@12345',
+                'mobile' => '9162384660',
+            ],
+            [
+                'name' => 'TECH ERA Computer Admin',
+                'email' => 'admin@drishticomputer.com',
+                'password' => 'Admin@12345',
+                'mobile' => '9942434239',
+            ],
+        ];
 
         $superRole = Role::where('name', 'super_admin')->first();
-        if ($superRole) {
-            $superAdmin->roles()->syncWithoutDetaching([$superRole->id]);
+
+        foreach ($adminAccounts as $acc) {
+            $superAdmin = User::updateOrCreate(
+                ['email' => $acc['email']],
+                [
+                    'name' => $acc['name'],
+                    'mobile' => $acc['mobile'],
+                    'password' => Hash::make($acc['password']),
+                    'role' => 'super_admin',
+                    'is_active' => true,
+                    'email_verified_at' => now(),
+                ]
+            );
+
+            if ($superRole) {
+                $superAdmin->roles()->syncWithoutDetaching([$superRole->id]);
+            }
         }
 
         // Record initialization in audit logs
