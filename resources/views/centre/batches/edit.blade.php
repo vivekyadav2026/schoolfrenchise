@@ -1,0 +1,75 @@
+@extends('layouts.centre')
+
+@section('title', 'Edit Batch - ' . $batch->batch_name)
+
+@section('content')
+<div class="mb-4">
+    <a href="{{ route('centre.batches.index') }}" class="btn btn-outline-secondary btn-sm rounded-pill mb-2">
+        <i class="fa-solid fa-arrow-left me-1"></i>Back to Batches
+    </a>
+    <h3 class="fw-bold text-dark mb-1">
+        <i class="fa-solid fa-pen-to-square text-primary me-2"></i>Edit Batch Schedule
+    </h3>
+    <p class="text-muted small mb-0">{{ $batch->batch_name }} | {{ $centre->centre_name }} ({{ $centre->centre_code }})</p>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card border-0 rounded-4 shadow-sm">
+            <div class="card-body p-4">
+                <form method="POST" action="{{ route('centre.batches.update', $batch->id) }}">
+                    @csrf
+                    @method('PUT')
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Batch Name / Shift Title <span class="text-danger">*</span></label>
+                        <input type="text" name="batch_name" class="form-control" value="{{ old('batch_name', $batch->batch_name) }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Course <span class="text-danger">*</span></label>
+                        <select name="course_id" class="form-select" required>
+                            <option value="">Select Associated Course</option>
+                            @foreach($courses as $c)
+                            <option value="{{ $c->id }}" {{ old('course_id', $batch->course_id) == $c->id ? 'selected' : '' }}>
+                                {{ $c->course_code }} - {{ $c->course_name }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Start Time <span class="text-danger">*</span></label>
+                            <input type="time" name="start_time" class="form-control" value="{{ old('start_time', $batch->start_time) }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">End Time <span class="text-danger">*</span></label>
+                            <input type="time" name="end_time" class="form-control" value="{{ old('end_time', $batch->end_time) }}" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Working Days Schedule <span class="text-danger">*</span></label>
+                            <input type="text" name="days" class="form-control" value="{{ old('days', $batch->days) }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Batch Status <span class="text-danger">*</span></label>
+                            <select name="status" class="form-select" required>
+                                <option value="active" {{ old('status', $batch->status) == 'active' ? 'selected' : '' }}>Active</option>
+                                <option value="completed" {{ old('status', $batch->status) == 'completed' ? 'selected' : '' }}>Completed</option>
+                                <option value="inactive" {{ old('status', $batch->status) == 'inactive' ? 'selected' : '' }}>Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 fw-bold">
+                        <i class="fa-solid fa-check me-1"></i>Update Batch Schedule
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

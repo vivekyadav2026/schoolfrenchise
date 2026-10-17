@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Micro-Desk GP - Playable 3D Game</title>
+  <style>
+    * { box-sizing: border-box; user-select: none; }
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: #111;
+      font-family: 'Segoe UI', Impact, sans-serif;
+    }
+    /* TOP LEFT HUD */
+    #hud-top-left {
+      position: absolute;
+      top: 18px;
+      left: 22px;
+      color: #fff;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.9);
+      pointer-events: none;
+    }
+    .lap-text {
+      font-size: 38px;
+      font-weight: 900;
+      font-style: italic;
+      letter-spacing: 1px;
+    }
+    .lap-text span { color: #ffcc00; }
+    .timer-box {
+      margin-top: 4px;
+      background: rgba(0, 0, 0, 0.75);
+      padding: 6px 14px;
+      border-radius: 6px;
+      border-left: 4px solid #ffcc00;
+      font-size: 24px;
+      font-weight: 800;
+      color: #ffcc00;
+      display: inline-block;
+      font-family: monospace;
+    }
+
+    /* TOP RIGHT MINIMAP */
+    #minimap-container {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      width: 170px;
+      height: 135px;
+      background: rgba(15, 25, 35, 0.85);
+      border: 2px solid #33ccff;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(51, 204, 255, 0.4);
+      pointer-events: none;
+    }
+
+    /* BOTTOM RIGHT SPEEDOMETER & NITRO */
+    #hud-bottom-right {
+      position: absolute;
+      bottom: 18px;
+      right: 24px;
+      display: flex;
+      align-items: flex-end;
+      gap: 18px;
+      pointer-events: none;
+    }
+    .nitro-wrap {
+      text-align: right;
+    }
+    .flame-label {
+      color: #ff6600;
+      font-weight: 900;
+      font-size: 16px;
+      text-shadow: 0 0 8px #ff3300;
+      margin-bottom: 4px;
+    }
+    .nitro-bar {
+      display: flex;
+      gap: 4px;
+      background: rgba(0,0,0,0.8);
+      padding: 5px;
+      border: 1px solid #555;
+      transform: skewX(-15deg);
+    }
+    .nitro-seg {
+      width: 16px;
+      height: 18px;
+      background: #333;
+    }
+    .nitro-seg.active {
+      background: linear-gradient(to top, #ff2200, #ffcc00);
+      box-shadow: 0 0 8px #ff8800;
+    }
+    .speedo-box {
+      width: 155px;
+      height: 155px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(10,25,45,0.9) 60%, rgba(0,180,255,0.25) 100%);
+      border: 4px solid #00aaff;
+      box-shadow: 0 0 20px rgba(0,170,255,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      position: relative;
+    }
+    .speed-num {
+      font-size: 44px;
+      font-weight: 900;
+      font-style: italic;
+      line-height: 1;
+    }
+    .speed-unit {
+      font-size: 13px;
+      color: #88ddff;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+    .pos-text {
+      margin-top: 6px;
+      font-size: 15px;
+      font-weight: 800;
+      color: #ddd;
+    }
+    .pos-text span {
+      color: #ffcc00;
+      font-size: 20px;
+    }
+
+    /* CONTROLS BANNER */
+    #controls-bar {
+      position: absolute;
+      bottom: 18px;
+      left: 22px;
+      background: rgba(0,0,0,0.75);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 8px;
+      border: 1px solid #444;
+      font-size: 14px;
+    }
+    #controls-bar b { color: #00ddff; }
+
+    /* START OVERLAY */
+    #start-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      z-index: 10;
+    }
+    #start-btn {
+      padding: 16px 40px;
+      font-size: 26px;
+      font-weight: 900;
+      color: #fff;
+      background: linear-gradient(45deg, #ff3300, #ff9900);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(255, 80, 0, 0.8);
+      text-transform: uppercase;
+    }
+    #start-btn:hover { transform: scale(1.05); }
+
+    /* FLOATING AI LABELS */
+    .ai-label {
+      position: absolute;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 800;
+      border: 1px solid #00ccff;
+      pointer-events: none;
+      transform: translate(-50%, -100%);
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+<!-- START OVERLAY -->
+<div id="start-overlay">
+  <h1 style="font-size: 48px; margin-bottom: 10px; color: #ffcc00; text-shadow: 0 0 15px #ff6600;">MICRO-DESK GP 3D</h1>
+  <p style="font-size: 18px; margin-bottom: 25px;">Use <b>Arrow Keys</b> or <b>W, A, S, D</b> to Drive | <b>SPACE</b> for Nitro</p>
+  <button id="start-btn">CLICK TO RACE</button>
+</div>
+
+<!-- TOP LEFT HUD -->
+<div id="hud-top-left">
+  <div class="lap-text">LAP <span id="lap-num">1</span> / 3</div>
+  <div class="timer-box">⏱ <span id="timer-txt">0:00.00</span></div>
+</div>
+
+<!-- TOP RIGHT MINIMAP -->
+<canvas id="minimap-container" width="170" height="135"></canvas>
+
+<!-- AI FLOATING TAGS -->
+<div id="label-tiger" class="ai-label">AI_TIGER</div>
+<div id="label-micro" class="ai-label">MICRO_SPEED</div>
+
+<!-- CONTROLS HINT -->
+<div id="controls-bar">
+  <b>↑ / W</b>: Race &nbsp;|&nbsp; <b>↓ / S</b>: Brake &nbsp;|&nbsp; <b>← → / A D</b>: Steer &nbsp;|&nbsp; <b>SPACE</b>: Nitro Boost
+</div>
+
+<!-- BOTTOM RIGHT SPEEDO -->
+<div id="hud-bottom-right">
+  <div class="nitro-wrap">
+    <div class="flame-label">🔥 NITRO</div>
+    <div class="nitro-bar" id="nitro-bar">
+      <div class="nitro-seg active"></div>
+      <div class="nitro-seg active"></div>
+      <div class="nitro-seg active"></div>
+      <div class="nitro-seg active"></div>
+      <div class="nitro-seg active"></div>
+      <div class="nitro-seg active"></div>
+    </div>
+  </div>
+  <div class="speedo-box">
+    <div class="speed-num" id="speed-num">0</div>
+    <div class="speed-unit">KM/H</div>
+    <div class="pos-text">POS: <span id="pos-txt">2nd</span> / 3</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+  // --- 1. SCENE SETUP ---
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x1e2229);
+
+  const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 600);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.shadowMap.enabled = true;
+  document.body.appendChild(renderer.domElement);
+
+  const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+  scene.add(ambient);
+
+  const sun = new THREE.DirectionalLight(0xfff4e0, 1.0);
+  sun.position.set(25, 70, 40);
+  sun.castShadow = true;
+  sun.shadow.mapSize.width = 2048;
+  sun.shadow.mapSize.height = 2048;
+  scene.add(sun);
+
+  // --- 2. PROCEDURAL TEXTURES ---
+  function makeWoodTex() {
+    const c = document.createElement('canvas');
+    c.width = 512; c.height = 512;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#6b4426';
+    ctx.fillRect(0,0,512,512);
+    for(let i=0; i<350; i++) {
+      ctx.fillStyle = i%2===0 ? 'rgba(40,20,8,0.16)' : 'rgba(140,90,50,0.14)';
+      ctx.fillRect(0, Math.random()*512, 512, Math.random()*5+1);
+    }
+    return new THREE.CanvasTexture(c);
+  }
+
+  function makeLaptopScreenTex() {
+    const c = document.createElement('canvas');
+    c.width = 512; c.height = 256;
+    const ctx = c.getContext('2d');
+    const grad = ctx.createLinearGradient(0,0,512,256);
+    grad.addColorStop(0, '#061a40');
+    grad.addColorStop(0.5, '#0055aa');
+    grad.addColorStop(1, '#220a39');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,512,256);
+    ctx.strokeStyle = '#00ffff';
+    ctx.lineWidth = 6;
+    ctx.strokeRect(20,20,472,216);
+    ctx.fillStyle = '#ffcc00';
+    ctx.font = 'bold 44px Impact, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('GAMING RACE', 256, 125);
+    ctx.fillStyle = '#00ffcc';
+    ctx.font = 'bold 22px sans-serif';
+    ctx.fillText('MICRO DESK CHAMPIONSHIP', 256, 165);
+    return new THREE.CanvasTexture(c);
+  }
+
+  function makeBoostPadTex() {
+    const c = document.createElement('canvas');
+    c.width = 256; c.height = 256;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#ff66cc';
+    ctx.fillRect(0,0,256,256);
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 8;
+    ctx.strokeRect(10,10,236,236);
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 42px Impact, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('BOOST', 128, 115);
+    ctx.fillText('PAD', 128, 165);
+    return new THREE.CanvasTexture(c);
+  }
+
+  // --- 3. WOODEN DESK ---
+  const desk = new THREE.Mesh(
+    new THREE.BoxGeometry(120, 2, 75),
+    new THREE.MeshStandardMaterial({ map: makeWoodTex(), roughness: 0.55 })
+  );
+  desk.position.y = -1;
+  desk.receiveShadow = true;
+  scene.add(desk);
+
+  // --- 4. SPLINE 3D RACE TRACK (MATCHING SCREENSHOT) ---
+  // Loop goes up the center-bottom ramp, curves right around tape/pen cup, loops top-left over brown folder, down left side, back to bottom
+  const waypoints = [
+    new THREE.Vector3(-2, 4.2, 28),   // 0: Bottom center elevated ramp (Player Start)
+    new THREE.Vector3(0, 2.0, 12),    // 1: Down slope through yellow arch
+    new THREE.Vector3(6, 0.5, 2),     // 2: Curve right near Boost Pad
+    new THREE.Vector3(20, 0.5, -3),   // 3: Right bend near white scribble paper
+    new THREE.Vector3(24, 0.5, -14),  // 4: Top-right hairpin
+    new THREE.Vector3(8, 0.5, -19),   // 5: Passing Pen Cup & Rubik's Cube
+    new THREE.Vector3(-12, 2.8, -22), // 6: Climbing onto Brown Folder
+    new THREE.Vector3(-25, 3.2, -12), // 7: Top of Brown Folder ramp
+    new THREE.Vector3(-36, 1.8, 6),   // 8: Left side straight with checkered arch
+    new THREE.Vector3(-32, 1.2, 25),  // 9: Bottom-left corner behind laptop
+    new THREE.Vector3(-15, 3.0, 31)   // 10: Climbing back to bottom-center ramp
+  ];
+
+  const trackCurve = new THREE.CatmullRomCurve3(waypoints, true, 'catmullrom', 0.5);
+  const trackSamples = 280;
+  const trackWidth = 6.2;
+
+  function buildTrackMesh() {
+    const pts = trackCurve.getSpacedPoints(trackSamples);
+    const roadVerts = [];
+    const roadUVs = [];
+    const roadIndices = [];
+
+    const leftWallVerts = [];
+    const rightWallVerts = [];
+    const wallIndices = [];
+
+    for (let i = 0; i <= trackSamples; i++) {
+      const p = pts[i];
+      const tangent = trackCurve.getTangentAt(i / trackSamples).normalize();
+      const up = new THREE.Vector3(0, 1, 0);
+      const side = new THREE.Vector3().crossVectors(tangent, up).normalize();
+
+      const pL = p.clone().addScaledVector(side, -trackWidth * 0.5);
+      const pR = p.clone().addScaledVector(side, trackWidth * 0.5);
+
+      roadVerts.push(pL.x, pL.y, pL.z, pR.x, pR.y, pR.z);
+      roadUVs.push(0, i * 0.2, 1, i * 0.2);
+
+      // Orange barrier strips along edges
+      leftWallVerts.push(pL.x, pL.y, pL.z, pL.x, pL.y + 0.65, pL.z);
+      rightWallVerts.push(pR.x, pR.y, pR.z, pR.x, pR.y + 0.65, pR.z);
+
+      if (i < trackSamples) {
+        const a = i * 2, b = a + 1, c = a + 2, d = a + 3;
+        roadIndices.push(a, b, c, b, d, c);
+        wallIndices.push(a, c, b, b, c, d);
+      }
+    }
+
+    // Road texture with white dashed center line
+    const rc = document.createElement('canvas');
+    rc.width = 128; rc.height = 128;
+    const rctx = rc.getContext('2d');
+    rctx.fillStyle = '#2b2d34';
+    rctx.fillRect(0,0,128,128);
+    rctx.fillStyle = '#ffffff';
+    rctx.fillRect(60, 15, 8, 65);
+    rctx.fillStyle = '#ff7700';
+    rctx.fillRect(0, 0, 8, 128);
+    rctx.fillRect(120, 0, 8, 128);
+    const rTex = new THREE.CanvasTexture(rc);
+    rTex.wrapS = THREE.RepeatWrapping;
+    rTex.wrapT = THREE.RepeatWrapping;
+
+    const roadGeo = new THREE.BufferGeometry();
+    roadGeo.setAttribute('position', new THREE.Float32BufferAttribute(roadVerts, 3));
+    roadGeo.setAttribute('uv', new THREE.Float32BufferAttribute(roadUVs, 2));
+    roadGeo.setIndex(roadIndices);
+    roadGeo.computeVertexNormals();
+
+    const roadMesh = new THREE.Mesh(
+      roadGeo,
+      new THREE.MeshStandardMaterial({ map: rTex, roughness: 0.6, side: THREE.DoubleSide })
+    );
+    roadMesh.receiveShadow = true;
+    scene.add(roadMesh);
+
+    const wallMat = new THREE.MeshStandardMaterial({
+      color: 0xff6600,
+      emissive: 0x331100,
+      roughness: 0.3,
+      side: THREE.DoubleSide
+    });
+
+    const lGeo = new THREE.BufferGeometry();
+    lGeo.setAttribute('position', new THREE.Float32BufferAttribute(leftWallVerts, 3));
+    lGeo.setIndex(wallIndices);
+    lGeo.computeVertexNormals();
+    scene.add(new THREE.Mesh(lGeo, wallMat));
+
+    const rGeo = new THREE.BufferGeometry();
+    rGeo.setAttribute('position', new THREE.Float32BufferAttribute(rightWallVerts, 3));
+    rGeo.setIndex(wallIndices);
+    rGeo.computeVertexNormals();
+    scene.add(new THREE.Mesh(rGeo, wallMat));
+  }
+  buildTrackMesh();
+
+  // --- 5. DESK OBJECTS (FROM YOUR PHOTO) ---
+
+  // A. Gaming Laptop (Bottom Left-Center)
+  const laptop = new THREE.Group();
+  const silver = new THREE.MeshStandardMaterial({ color: 0xcfd5de, metalness: 0.6, roughness: 0.3 });
+  const lBase = new THREE.Mesh(new THREE.BoxGeometry(20, 0.7, 13), silver);
+  laptop.add(lBase);
+  const lScreen = new THREE.Mesh(
+    new THREE.BoxGeometry(20, 11.5, 0.5),
+    new THREE.MeshBasicMaterial({ map: makeLaptopScreenTex() })
+  );
+  lScreen.position.set(0, 5.5, -6.2);
+  lScreen.rotation.x = -0.2;
+  laptop.add(lScreen);
+  laptop.position.set(-16, 0.4, 21);
+  laptop.rotation.y = 0.15;
+  scene.add(laptop);
+
+  // B. Blue Headphones with "GO!" Neon Band (Bottom Right)
+  const hpGroup = new THREE.Group();
+  const hpMat = new THREE.MeshStandardMaterial({ color: 0x1577aa, roughness: 0.3, metalness: 0.2 });
+  const earL = new THREE.Mesh(new THREE.CylinderGeometry(3.8, 3.8, 2.5, 24), hpMat);
+  earL.rotation.z = Math.PI / 2;
+  earL.position.set(-6, 3, 2);
+  hpGroup.add(earL);
+
+  const earR = new THREE.Mesh(new THREE.CylinderGeometry(3.8, 3.8, 2.5, 24), hpMat);
+  earR.rotation.z = Math.PI / 2;
+  earR.position.set(6, 3, 2);
+  hpGroup.add(earR);
+
+  const band = new THREE.Mesh(
+    new THREE.TorusGeometry(6.2, 0.9, 16, 32, Math.PI),
+    new THREE.MeshStandardMaterial({ color: 0x00ccff, emissive: 0x0055aa })
+  );
+  band.position.set(0, 3, 0);
+  band.rotation.x = -0.35;
+  hpGroup.add(band);
+  hpGroup.position.set(22, 0, 16);
+  hpGroup.rotation.y = -0.3;
+  scene.add(hpGroup);
+
+  // C. Brown Folder & Paper Stack (Top Left)
+  const folder = new THREE.Mesh(
+    new THREE.BoxGeometry(22, 2.2, 26),
+    new THREE.MeshStandardMaterial({ color: 0xb89668, roughness: 0.8 })
+  );
+  folder.position.set(-22, 1.1, -11);
+  folder.rotation.y = -0.3;
+  scene.add(folder);
+
+  // D. Pink Neon "BOOST PAD" Sticky Note
+  const boostPad = new THREE.Mesh(
+    new THREE.BoxGeometry(5.5, 0.2, 5.5),
+    new THREE.MeshBasicMaterial({ map: makeBoostPadTex() })
+  );
+  boostPad.position.set(-3, 0.2, 4);
+  boostPad.rotation.y = 0.5;
+  scene.add(boostPad);
+
+  // E. Tape Roll
+  const tape = new THREE.Mesh(
+    new THREE.TorusGeometry(3.0, 0.9, 16, 32),
+    new THREE.MeshStandardMaterial({ color: 0xd1be91, transparent: true, opacity: 0.8 })
+  );
+  tape.rotation.x = Math.PI / 2;
+  tape.position.set(-2, 0.9, -4);
+  scene.add(tape);
+
+  // F. Rubik's Cube & Pen Cup
+  const rubik = new THREE.Mesh(
+    new THREE.BoxGeometry(4, 4, 4),
+    new THREE.MeshStandardMaterial({ color: 0xff3300 })
+  );
+  rubik.position.set(-2, 2, -13);
+  scene.add(rubik);
+
+  const cup = new THREE.Mesh(
+    new THREE.CylinderGeometry(2.5, 2.1, 6, 20),
+    new THREE.MeshStandardMaterial({ color: 0x18181c })
+  );
+  cup.position.set(3.5, 3, -15);
+  scene.add(cup);
+
+  // G. Yellow Striped Tunnel Arch (Over Center Ramp)
+  const arch = new THREE.Mesh(
+    new THREE.TorusGeometry(4.2, 0.45, 12, 24, Math.PI),
+    new THREE.MeshStandardMaterial({ color: 0xffaa00, emissive: 0x331a00 })
+  );
+  arch.position.set(0, 2.0, 12);
+  scene.add(arch);
+
+  // H. Right White Paper & Red Marker
+  const whiteSheet = new THREE.Mesh(
+    new THREE.BoxGeometry(20, 0.1, 16),
+    new THREE.MeshStandardMaterial({ color: 0xf4f6f8 })
+  );
+  whiteSheet.position.set(24, 0.1, 2);
+  whiteSheet.rotation.y = -0.35;
+  scene.add(whiteSheet);
+
+  const redPen = new THREE.Mesh(
+    new THREE.CylinderGeometry(0.5, 0.5, 8, 12),
+    new THREE.MeshStandardMaterial({ color: 0xdd2222 })
+  );
+  redPen.rotation.z = Math.PI / 2;
+  redPen.position.set(24, 0.6, 4);
+  scene.add(redPen);
+
+  // --- 6. BUILD 3D CARS (PLAYER + 2 AI RIVALS) ---
+  function createRaceCar(colorHex, withFlame) {
+    const g = new THREE.Group();
+    const body = new THREE.Mesh(
+      new THREE.BoxGeometry(1.9, 0.65, 3.6),
+      new THREE.MeshStandardMaterial({ color: colorHex, metalness: 0.4, roughness: 0.2 })
+    );
+    body.position.y = 0.55;
+    body.castShadow = true;
+    g.add(body);
+
+    const roof = new THREE.Mesh(
+      new THREE.BoxGeometry(1.5, 0.5, 1.7),
+      new THREE.MeshStandardMaterial({ color: 0x11161d })
+    );
+    roof.position.set(0, 1.05, -0.2);
+    g.add(roof);
+
+    // Glowing Tail Lights
+    const tailMat = new THREE.MeshBasicMaterial({ color: 0xff2200 });
+    const tl1 = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.25, 0.1), tailMat);
+    tl1.position.set(-0.6, 0.65, 1.81);
+    const tl2 = tl1.clone();
+    tl2.position.x = 0.6;
+    g.add(tl1, tl2);
+
+    if (withFlame) {
+      const fMat = new THREE.MeshBasicMaterial({ color: 0xffaa00 });
+      const f1 = new THREE.Mesh(new THREE.ConeGeometry(0.25, 1.5, 8), fMat);
+      f1.rotation.x = Math.PI / 2;
+      f1.position.set(-0.6, 0.5, 2.5);
+      const f2 = f1.clone();
+      f2.position.x = 0.6;
+      g.add(f1, f2);
+      g.userData.flames = [f1, f2];
+    }
+
+    scene.add(g);
+    return g;
+  }
+
+  const playerCar = createRaceCar(0xd91b24, true); // Red Hero Car
+  const aiTigerCar = createRaceCar(0x1e88e5, false); // Blue AI_TIGER
+  const aiMicroCar = createRaceCar(0xffc107, false); // Yellow MICRO_SPEED
+
+  // --- 7. DRIVING & RACE LOGIC ---
+  let gameStarted = false;
+  document.getElementById('start-btn').addEventListener('click', () => {
+    document.getElementById('start-overlay').style.display = 'none';
+    gameStarted = true;
+    raceStartTime = performance.now();
+  });
+
+  const keys = {};
+  window.addEventListener('keydown', e => keys[e.code] = true);
+  window.addEventListener('keyup', e => keys[e.code] = false);
+
+  // Track progress `t` goes 0 -> 1 per lap, plus lateral offset `lat`
+  const player = { t: 0.0, lat: 0, speed: 0, lap: 1, nitro: 100 };
+  const ai1 = { t: 0.045, lat: -1.1, speed: 0.085, lap: 1, el: document.getElementById('label-tiger') };
+  const ai2 = { t: 0.11,  lat: 1.1,  speed: 0.078, lap: 1, el: document.getElementById('label-micro') };
+
+  let raceStartTime = performance.now();
+  let lastFrame = performance.now();
+
+  function placeCarOnSpline(carMesh, tVal, latOffset) {
+    const wrappedT = ((tVal % 1) + 1) % 1;
+    const pos = trackCurve.getPointAt(wrappedT);
+    const tangent = trackCurve.getTangentAt(wrappedT).normalize();
+    const side = new THREE.Vector3().crossVectors(tangent, new THREE.Vector3(0,1,0)).normalize();
+
+    pos.addScaledVector(side, latOffset);
+    carMesh.position.copy(pos);
+
+    const lookTarget = pos.clone().add(tangent);
+    carMesh.lookAt(lookTarget);
+  }
+
+  function updateFloatingLabel(mesh, domEl) {
+    const v = mesh.position.clone();
+    v.y += 1.9;
+    v.project(camera);
+    if (v.z > 1) {
+      domEl.style.display = 'none';
+      return;
+    }
+    const x = (v.x * 0.5 + 0.5) * window.innerWidth;
+    const y = (-v.y * 0.5 + 0.5) * window.innerHeight;
+    domEl.style.display = 'block';
+    domEl.style.left = `${x}px`;
+    domEl.style.top = `${y}px`;
+  }
+
+  // Minimap Drawing
+  const mmCanvas = document.getElementById('minimap-container');
+  const mmCtx = mmCanvas.getContext('2d');
+  const mmPts = trackCurve.getSpacedPoints(80);
+
+  function drawMinimap() {
+    mmCtx.clearRect(0, 0, 170, 135);
+    const mapX = x => 85 + x * 1.65;
+    const mapZ = z => 67 + z * 1.55;
+
+    // Draw Track Loop
+    mmCtx.beginPath();
+    mmPts.forEach((p, idx) => {
+      if (idx === 0) mmCtx.moveTo(mapX(p.x), mapZ(p.z));
+      else mmCtx.lineTo(mapX(p.x), mapZ(p.z));
+    });
+    mmCtx.closePath();
+    mmCtx.strokeStyle = '#778899';
+    mmCtx.lineWidth = 6;
+    mmCtx.stroke();
+
+    // Draw Cars on Minimap
+    const drawDot = (mesh, col, r) => {
+      mmCtx.beginPath();
+      mmCtx.arc(mapX(mesh.position.x), mapZ(mesh.position.z), r, 0, Math.PI * 2);
+      mmCtx.fillStyle = col;
+      mmCtx.fill();
+    };
+    drawDot(aiTigerCar, '#00aaff', 4);
+    drawDot(aiMicroCar, '#ffcc00', 4);
+    drawDot(playerCar, '#ff2222', 5.5);
+  }
+
+  // --- 8. MAIN ANIMATION LOOP ---
+  function animate(now) {
+    requestAnimationFrame(animate);
+    const dt = Math.min((now - lastFrame) / 1000, 0.1);
+    lastFrame = now;
+
+    if (gameStarted) {
+      const boosting = keys['Space'] && player.nitro > 0;
+      const topSpeed = boosting ? 0.155 : 0.105;
+      const accel = boosting ? 0.14 : 0.075;
+
+      if (keys['ArrowUp'] || keys['KeyW']) {
+        player.speed = Math.min(topSpeed, player.speed + accel * dt);
+      } else if (keys['ArrowDown'] || keys['KeyS']) {
+        player.speed = Math.max(-0.04, player.speed - 0.12 * dt);
+      } else {
+        player.speed *= 0.98;
+      }
+
+      if (boosting) {
+        player.nitro = Math.max(0, player.nitro - 35 * dt);
+      } else {
+        player.nitro = Math.min(100, player.nitro + 12 * dt);
+      }
+
+      // Steer Left / Right across track width
+      if (Math.abs(player.speed) > 0.005) {
+        if (keys['ArrowLeft'] || keys['KeyA']) player.lat -= 4.2 * dt;
+        if (keys['ArrowRight'] || keys['KeyD']) player.lat += 4.2 * dt;
+        player.lat = Math.max(-2.3, Math.min(2.3, player.lat));
+      }
+
+      // Advance Player & AI along track spline
+      const prevT = player.t;
+      player.t += player.speed * dt;
+      if (Math.floor(player.t) > Math.floor(prevT)) {
+        player.lap = Math.min(3, player.lap + 1);
+        document.getElementById('lap-num').textContent = player.lap;
+      }
+
+      ai1.t += ai1.speed * dt;
+      ai2.t += ai2.speed * dt;
+
+      // Toggle Nitro Exhaust Flames
+      playerCar.userData.flames.forEach(f => {
+        f.visible = boosting || player.speed > 0.07;
+        f.scale.y = boosting ? 1.6 + Math.random() * 0.5 : 0.8;
+      });
+
+      // Update Timer & Speed HUD
+      const elapsed = (now - raceStartTime) / 1000;
+      const mins = Math.floor(elapsed / 60);
+      const secs = (elapsed % 60).toFixed(2).padStart(5, '0');
+      document.getElementById('timer-txt').textContent = `${mins}:${secs}`;
+
+      const kmh = Math.round(Math.abs(player.speed) * 1150);
+      document.getElementById('speed-num').textContent = kmh;
+
+      // Compute Race Position (1st, 2nd, 3rd)
+      let rank = 1;
+      if (ai1.t > player.t) rank++;
+      if (ai2.t > player.t) rank++;
+      const suffixes = ['1st', '2nd', '3rd'];
+      document.getElementById('pos-txt').textContent = suffixes[rank - 1];
+
+      // Update Nitro Bar Segments
+      const segs = document.querySelectorAll('.nitro-seg');
+      const activeCount = Math.ceil((player.nitro / 100) * segs.length);
+      segs.forEach((s, idx) => s.classList.toggle('active', idx < activeCount));
+    }
+
+    // Position all 3 cars
+    placeCarOnSpline(playerCar, player.t, player.lat);
+    placeCarOnSpline(aiTigerCar, ai1.t, ai1.lat);
+    placeCarOnSpline(aiMicroCar, ai2.t, ai2.lat);
+
+    // Chase Camera behind Player Car (Just like the image!)
+    const wrappedT = ((player.t % 1) + 1) % 1;
+    const tangent = trackCurve.getTangentAt(wrappedT).normalize();
+    const camPos = playerCar.position.clone()
+      .addScaledVector(tangent, -8.5)
+      .add(new THREE.Vector3(0, 4.3, 0));
+    camera.position.lerp(camPos, 0.15);
+    camera.lookAt(playerCar.position.clone().addScaledVector(tangent, 6));
+
+    updateFloatingLabel(aiTigerCar, ai1.el);
+    updateFloatingLabel(aiMicroCar, ai2.el);
+    drawMinimap();
+
+    renderer.render(scene, camera);
+  }
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+
+  requestAnimationFrame(animate);
+</script>
+</body>
+</html>

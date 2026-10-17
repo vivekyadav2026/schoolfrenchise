@@ -1,0 +1,183 @@
+@extends('layouts.centre')
+
+@section('title', 'Centre Profile & Settings - TECH ERA COMPUTER')
+
+@section('content')
+<div class="mb-4">
+    <h3 class="fw-bold text-dark mb-1">
+        <i class="fa-solid fa-id-card-clip text-primary me-2"></i>Study Centre Profile & Settings
+    </h3>
+    <p class="text-muted small mb-0">Manage franchise branch credentials, director profile, contact points, and login password.</p>
+</div>
+
+<div class="row g-4">
+    <!-- Left Column: Affiliation & Details Form -->
+    <div class="col-lg-8">
+        <div class="card border-0 rounded-4 shadow-sm mb-4">
+            <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+                <h6 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-building text-primary me-2"></i>Branch Profile & Lab Infrastructure</h6>
+                <span class="badge bg-primary font-monospace">{{ $centre->centre_code }}</span>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST" action="{{ route('centre.profile.update') }}" enctype="multipart/form-data">
+                    @csrf
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Study Centre Official Name</label>
+                            <input type="text" class="form-control bg-light" value="{{ $centre->centre_name }}" readonly>
+                            <div class="form-text" style="font-size: 0.72rem;">Central board authorized name. Contact head office for changes.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Director / Head Person Name <span class="text-danger">*</span></label>
+                            <input type="text" name="director_name" class="form-control" value="{{ old('director_name', $centre->director_name) }}" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Primary Contact Mobile <span class="text-danger">*</span></label>
+                            <input type="text" name="mobile" class="form-control" maxlength="10" value="{{ old('mobile', $centre->mobile) }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Alternate Mobile</label>
+                            <input type="text" name="alternate_mobile" class="form-control" value="{{ old('alternate_mobile', $centre->alternate_mobile) }}">
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Official Contact Email <span class="text-danger">*</span></label>
+                            <input type="email" name="email" class="form-control" value="{{ old('email', $centre->email) }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Computer Lab Workstations Capacity <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="number" min="1" name="lab_capacity" class="form-control" value="{{ old('lab_capacity', $centre->lab_capacity) }}" required>
+                                <span class="input-group-text bg-light">PCs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-8">
+                            <label class="form-label fw-semibold">Registered Campus Address <span class="text-danger">*</span></label>
+                            <input type="text" name="address" class="form-control" value="{{ old('address', $centre->address) }}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Postal Pincode <span class="text-danger">*</span></label>
+                            <input type="text" name="pincode" class="form-control" value="{{ old('pincode', $centre->pincode) }}" required>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">City / Town <span class="text-danger">*</span></label>
+                            <input type="text" name="city" class="form-control" value="{{ old('city', $centre->city) }}" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">District</label>
+                            <input type="text" class="form-control bg-light" value="{{ $centre->district?->name }}" readonly>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">State</label>
+                            <input type="text" class="form-control bg-light" value="{{ $centre->state?->name }}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold small">Director Passport Photo</label>
+                            <input type="file" name="director_photo" class="form-control form-control-sm" accept="image/*">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold small">Director Specimen Signature</label>
+                            <input type="file" name="director_signature" class="form-control form-control-sm" accept="image/*">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary rounded-pill px-4 fw-bold">
+                        <i class="fa-solid fa-floppy-disk me-1"></i>Save Profile Updates
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Change Password Card -->
+        <div class="card border-0 rounded-4 shadow-sm">
+            <div class="card-header bg-white py-3 border-bottom">
+                <h6 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-lock text-warning me-2"></i>Change Centre Login Password</h6>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST" action="{{ route('centre.profile.change-password') }}">
+                    @csrf
+
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Current Password <span class="text-danger">*</span></label>
+                            <input type="password" name="current_password" class="form-control" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">New Password <span class="text-danger">*</span></label>
+                            <input type="password" name="password" class="form-control" minlength="6" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold">Confirm Password <span class="text-danger">*</span></label>
+                            <input type="password" name="password_confirmation" class="form-control" minlength="6" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-warning text-dark rounded-pill px-4 fw-bold mt-4">
+                        <i class="fa-solid fa-key me-1"></i>Update Password
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Column: Affiliation Credentials Summary -->
+    <div class="col-lg-4">
+        <div class="card border-0 rounded-4 shadow-sm mb-4">
+            <div class="card-header bg-white py-3 border-bottom">
+                <h6 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-award text-warning me-2"></i>Affiliation Standing</h6>
+            </div>
+            <div class="card-body p-4">
+                <div class="text-center mb-3">
+                    <span class="badge bg-success-subtle text-success fs-6 px-3 py-2 fw-bold">
+                        <i class="fa-solid fa-circle-check me-1"></i>AUTHORIZED ACTIVE
+                    </span>
+                </div>
+
+                <ul class="list-unstyled mb-0 small">
+                    <li class="py-2 border-bottom d-flex justify-content-between">
+                        <span class="text-muted">Centre Code:</span>
+                        <span class="fw-bold font-monospace text-primary">{{ $centre->centre_code }}</span>
+                    </li>
+                    <li class="py-2 border-bottom d-flex justify-content-between">
+                        <span class="text-muted">Affiliation Date:</span>
+                        <span class="fw-semibold">{{ $centre->affiliation_date ? $centre->affiliation_date->format('d M, Y') : 'N/A' }}</span>
+                    </li>
+                    <li class="py-2 border-bottom d-flex justify-content-between">
+                        <span class="text-muted">Validity Term:</span>
+                        <span class="fw-semibold">{{ $centre->valid_upto ? $centre->valid_upto->format('d M, Y') : 'Annual Regular' }}</span>
+                    </li>
+                    <li class="py-2 border-bottom d-flex justify-content-between">
+                        <span class="text-muted">Director:</span>
+                        <span class="fw-bold text-dark">{{ $centre->director_name }}</span>
+                    </li>
+                    <li class="py-2 border-bottom d-flex justify-content-between">
+                        <span class="text-muted">Prepaid Wallet:</span>
+                        <span class="fw-bold text-success font-monospace">₹{{ number_format($centre->wallet?->balance ?? 0, 2) }}</span>
+                    </li>
+                </ul>
+
+                <div class="mt-4">
+                    <a href="{{ route('centre.downloads.certificate') }}" class="btn btn-outline-primary rounded-pill w-100 fw-semibold" target="_blank">
+                        <i class="fa-solid fa-certificate me-1"></i>Affiliation Certificate
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

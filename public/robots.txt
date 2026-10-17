@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /centre/
+Disallow: /student/dashboard
+
+Sitemap: http://localhost/sitemap.xml

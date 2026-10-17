@@ -1,0 +1,160 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\AuditLog;
+use App\Models\Setting;
+use App\Services\FileUploadService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class AdminSettingController extends Controller
+{
+    /**
+     * Display the system settings hub.
+     */
+    public function index()
+    {
+        $savedSettings = Setting::getAllKeyValues();
+
+        // Default application parameters
+        $defaults = [
+            // Branding & Institute Identity
+            'institute_name'               => 'TECH ERA COMPUTER',
+            'institute_tagline'            => 'Building Digital Skills for the Future',
+            'affiliation_text'             => '',
+            'institute_logo'               => 'images/tech-era-logo.png',
+            'institute_favicon'            => null,
+            'institute_seal'               => null,
+
+            // Communication & Corporate Location
+            'contact_email'                => '',
+            'contact_phone'                => '9162384660',
+            'helpline_number'              => '9162384660',
+            'whatsapp_number'              => '9162384660',
+            'corporate_address'            => 'Sasbahana, Sheikhpura, Bihar - 801105',
+
+            // Academic & Operations
+            'academic_session'             => '2025-2026',
+            'admissions_open'              => '1',
+            'exam_registrations_open'      => '1',
+            'franchise_applications_open'  => '1',
+
+            // Financial & Document Numbering
+            'receipt_prefix'               => 'RCP',
+            'certificate_prefix'           => 'DCE/CERT',
+            'marksheet_prefix'             => 'DCE/MS',
+            'currency_symbol'              => '₹',
+            'tax_percentage'               => '0.00',
+
+            // Integrations & Notification Toggles
+            'online_payments_enabled'      => '1',
+            'payment_gateway_mode'         => 'sandbox',
+            'sms_alerts_enabled'           => '0',
+            'whatsapp_alerts_enabled'      => '0',
+        ];
+
+        $settings = array_merge($defaults, $savedSettings);
+
+        return view('admin.settings.index', compact('settings'));
+    }
+
+    /**
+     * Update system configuration parameters in database.
+     */
+    public function update(Request $request)
+    {
+        $validated = $request->validate([
+            // Branding
+            'institute_name'              => ['required', 'string', 'max:191'],
+            'institute_tagline'           => ['nullable', 'string', 'max:255'],
+            'affiliation_text'            => ['nullable', 'string', 'max:500'],
+            'institute_logo'              => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
+            'institute_favicon'           => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:1024'],
+            'institute_seal'              => ['nullable', 'image', 'mimes:jpeg,png,webp', 'max:2048'],
+
+            // Contact
+            'contact_email'               => ['required', 'email', 'max:191'],
+            'contact_phone'               => ['required', 'string', 'max:50'],
+            'helpline_number'             => ['nullable', 'string', 'max:50'],
+            'whatsapp_number'             => ['nullable', 'string', 'max:50'],
+            'corporate_address'           => ['required', 'string', 'max:500'],
+
+            // Academic
+            'academic_session'            => ['required', 'string', 'max:50'],
+            'admissions_open'             => ['nullable', 'boolean'],
+            'exam_registrations_open'     => ['nullable', 'boolean'],
+            'franchise_applications_open' => ['nullable', 'boolean'],
+
+            // Financial
+            'receipt_prefix'              => ['required', 'string', 'max:20'],
+            'certificate_prefix'          => ['required', 'string', 'max:30'],
+            'marksheet_prefix'            => ['required', 'string', 'max:30'],
+            'currency_symbol'             => ['required', 'string', 'max:10'],
+            'tax_percentage'              => ['nullable', 'numeric', 'min:0', 'max:100'],
+
+            // Integrations
+            'online_payments_enabled'     => ['nullable', 'boolean'],
+            'payment_gateway_mode'        => ['required', 'string', 'in:sandbox,live'],
+            'sms_alerts_enabled'          => ['nullable', 'boolean'],
+            'whatsapp_alerts_enabled'     => ['nullable', 'boolean'],
+        ]);
+
+        return DB::transaction(function () use ($request, $validated) {
+            // Group 1: Branding
+            Setting::set('institute_name', $validated['institute_name'], 'branding');
+            Setting::set('institute_tagline', $validated['institute_tagline'] ?? '', 'branding');
+            Setting::set('affiliation_text', $validated['affiliation_text'] ?? '', 'branding');
+
+            if ($request->hasFile('institute_logo')) {
+                $logoPath = FileUploadService::uploadImage($request->file('institute_logo'), 'uploads/settings');
+                Setting::set('institute_logo', $logoPath, 'branding');
+            }
+
+            if ($request->hasFile('institute_favicon')) {
+                $favPath = FileUploadService::uploadImage($request->file('institute_favicon'), 'uploads/settings');
+                Setting::set('institute_favicon', $favPath, 'branding');
+            }
+
+            if ($request->hasFile('institute_seal')) {
+                $sealPath = FileUploadService::uploadImage($request->file('institute_seal'), 'uploads/settings');
+                Setting::set('institute_seal', $sealPath, 'branding');
+            }
+
+            // Group 2: Contact
+            Setting::set('contact_email', $validated['contact_email'], 'contact');
+            Setting::set('contact_phone', $validated['contact_phone'], 'contact');
+            Setting::set('helpline_number', $validated['helpline_number'] ?? '', 'contact');
+            Setting::set('whatsapp_number', $validated['whatsapp_number'] ?? '', 'contact');
+            Setting::set('corporate_address', $validated['corporate_address'], 'contact');
+
+            // Group 3: Academic
+            Setting::set('academic_session', $validated['academic_session'], 'academic');
+            Setting::set('admissions_open', $request->boolean('admissions_open') ? '1' : '0', 'academic');
+            Setting::set('exam_registrations_open', $request->boolean('exam_registrations_open') ? '1' : '0', 'academic');
+            Setting::set('franchise_applications_open', $request->boolean('franchise_applications_open') ? '1' : '0', 'academic');
+
+            // Group 4: Financial & Numbering
+            Setting::set('receipt_prefix', strtoupper(trim($validated['receipt_prefix'])), 'financial');
+            Setting::set('certificate_prefix', strtoupper(trim($validated['certificate_prefix'])), 'financial');
+            Setting::set('marksheet_prefix', strtoupper(trim($validated['marksheet_prefix'])), 'financial');
+            Setting::set('currency_symbol', $validated['currency_symbol'], 'financial');
+            Setting::set('tax_percentage', (string) ($validated['tax_percentage'] ?? '0.00'), 'financial');
+
+            // Group 5: Integrations
+            Setting::set('online_payments_enabled', $request->boolean('online_payments_enabled') ? '1' : '0', 'integrations');
+            Setting::set('payment_gateway_mode', $validated['payment_gateway_mode'], 'integrations');
+            Setting::set('sms_alerts_enabled', $request->boolean('sms_alerts_enabled') ? '1' : '0', 'integrations');
+            Setting::set('whatsapp_alerts_enabled', $request->boolean('whatsapp_alerts_enabled') ? '1' : '0', 'integrations');
+
+            AuditLog::record('settings_updated', null, null, [
+                'updated_by' => auth()->id(),
+                'ip'         => $request->ip(),
+            ]);
+
+            return redirect()->route('admin.settings.index')
+                ->with('success', 'System settings and institutional configuration updated successfully.');
+        });
+    }
+}
