@@ -79,7 +79,7 @@ class AdminUserModuleTest extends TestCase
         $testUser = User::create([
             'name'      => 'Vikramaditya Faculty',
             'email'     => $uniqueEmail,
-            'mobile'    => '9812345678',
+            'mobile'    => '98' . mt_rand(11111111, 99999999),
             'password'  => Hash::make('Password@123'),
             'role'      => 'staff',
             'centre_id' => $this->centre->id,
