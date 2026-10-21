@@ -37,19 +37,19 @@
 </div>
 
 <!-- Quick Statistics KPI Grid -->
-<div class="row g-3 mb-4">
+<div class="row g-2.5 g-sm-3 mb-4">
     <!-- Total Students -->
-    <div class="col-sm-6 col-xl-3">
-        <div class="stat-card p-3 h-100 border-start border-4 border-primary">
+    <div class="col-6 col-xl-3">
+        <div class="stat-card p-2.5 p-sm-3 h-100 border-start border-4 border-primary">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <div class="text-muted small fw-semibold text-uppercase">Admitted Students</div>
-                    <h3 class="fw-bold text-dark my-1">{{ number_format($stats['total_students']) }}</h3>
-                    <a href="{{ route('centre.students.index') }}" class="text-decoration-none small text-primary fw-semibold">
-                        View Directory <i class="fa-solid fa-arrow-right ms-1"></i>
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Admitted Students</div>
+                    <h3 class="fw-bold text-dark my-1 fs-5 fs-sm-4 fs-md-3">{{ number_format($stats['total_students']) }}</h3>
+                    <a href="{{ route('centre.students.index') }}" class="text-decoration-none small text-primary fw-semibold" style="font-size: 0.72rem;">
+                        Directory <i class="fa-solid fa-arrow-right ms-0.5"></i>
                     </a>
                 </div>
-                <div class="rounded-circle bg-primary-subtle p-3 text-primary fs-4">
+                <div class="rounded-circle bg-primary-subtle text-primary d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; flex-shrink: 0; font-size: 0.95rem;">
                     <i class="fa-solid fa-user-graduate"></i>
                 </div>
             </div>
@@ -57,17 +57,17 @@
     </div>
 
     <!-- Active Batches -->
-    <div class="col-sm-6 col-xl-3">
-        <div class="stat-card p-3 h-100 border-start border-4 border-info">
+    <div class="col-6 col-xl-3">
+        <div class="stat-card p-2.5 p-sm-3 h-100 border-start border-4 border-info">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <div class="text-muted small fw-semibold text-uppercase">Active Batches</div>
-                    <h3 class="fw-bold text-dark my-1">{{ number_format($stats['active_batches']) }}</h3>
-                    <a href="{{ route('centre.batches.index') }}" class="text-decoration-none small text-info fw-semibold">
-                        Daily Shifts <i class="fa-solid fa-arrow-right ms-1"></i>
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Active Batches</div>
+                    <h3 class="fw-bold text-dark my-1 fs-5 fs-sm-4 fs-md-3">{{ number_format($stats['active_batches']) }}</h3>
+                    <a href="{{ route('centre.batches.index') }}" class="text-decoration-none small text-info fw-semibold" style="font-size: 0.72rem;">
+                        Daily Shifts <i class="fa-solid fa-arrow-right ms-0.5"></i>
                     </a>
                 </div>
-                <div class="rounded-circle bg-info-subtle p-3 text-info fs-4">
+                <div class="rounded-circle bg-info-subtle text-info d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; flex-shrink: 0; font-size: 0.95rem;">
                     <i class="fa-solid fa-users"></i>
                 </div>
             </div>
@@ -75,17 +75,17 @@
     </div>
 
     <!-- Total Fee Collected -->
-    <div class="col-sm-6 col-xl-3">
-        <div class="stat-card p-3 h-100 border-start border-4 border-success">
+    <div class="col-6 col-xl-3">
+        <div class="stat-card p-2.5 p-sm-3 h-100 border-start border-4 border-success">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <div class="text-muted small fw-semibold text-uppercase">Fee Collections</div>
-                    <h3 class="fw-bold text-success my-1">₹{{ number_format($stats['fee_collected'], 2) }}</h3>
-                    <a href="{{ route('centre.fees.index') }}" class="text-decoration-none small text-success fw-semibold">
-                        Payment Receipts <i class="fa-solid fa-arrow-right ms-1"></i>
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Fee Collections</div>
+                    <h3 class="fw-bold text-success my-1 fs-6 fs-sm-5 fs-md-4">₹{{ number_format($stats['fee_collected'], 2) }}</h3>
+                    <a href="{{ route('centre.fees.index') }}" class="text-decoration-none small text-success fw-semibold" style="font-size: 0.72rem;">
+                        Receipts <i class="fa-solid fa-arrow-right ms-0.5"></i>
                     </a>
                 </div>
-                <div class="rounded-circle bg-success-subtle p-3 text-success fs-4">
+                <div class="rounded-circle bg-success-subtle text-success d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; flex-shrink: 0; font-size: 0.95rem;">
                     <i class="fa-solid fa-receipt"></i>
                 </div>
             </div>
@@ -93,17 +93,17 @@
     </div>
 
     <!-- Scheduled Exams -->
-    <div class="col-sm-6 col-xl-3">
-        <div class="stat-card p-3 h-100 border-start border-4 border-warning">
+    <div class="col-6 col-xl-3">
+        <div class="stat-card p-2.5 p-sm-3 h-100 border-start border-4 border-warning">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <div class="text-muted small fw-semibold text-uppercase">Upcoming Exams</div>
-                    <h3 class="fw-bold text-dark my-1">{{ number_format($stats['upcoming_exams']) }}</h3>
-                    <a href="{{ route('centre.exams.index') }}" class="text-decoration-none small text-warning-emphasis fw-semibold">
-                        Hall Tickets & Marks <i class="fa-solid fa-arrow-right ms-1"></i>
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Upcoming Exams</div>
+                    <h3 class="fw-bold text-dark my-1 fs-5 fs-sm-4 fs-md-3">{{ number_format($stats['upcoming_exams']) }}</h3>
+                    <a href="{{ route('centre.exams.index') }}" class="text-decoration-none small text-warning-emphasis fw-semibold" style="font-size: 0.72rem;">
+                        Hall Tickets <i class="fa-solid fa-arrow-right ms-0.5"></i>
                     </a>
                 </div>
-                <div class="rounded-circle bg-warning-subtle p-3 text-warning-emphasis fs-4">
+                <div class="rounded-circle bg-warning-subtle text-warning-emphasis d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; flex-shrink: 0; font-size: 0.95rem;">
                     <i class="fa-solid fa-clipboard-check"></i>
                 </div>
             </div>

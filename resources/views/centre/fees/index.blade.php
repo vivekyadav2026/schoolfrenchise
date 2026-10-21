@@ -21,33 +21,33 @@
 </div>
 
 <!-- Stats Strip -->
-<div class="row g-3 mb-4">
-    <div class="col-sm-6 col-xl-3">
-        <div class="stat-card p-3 bg-white border-start border-4 border-success">
-            <div class="text-muted small fw-semibold text-uppercase">Total Collections</div>
-            <div class="fs-4 fw-bold text-success my-1">₹{{ number_format($stats['total_collected'], 2) }}</div>
-            <span class="small text-muted">All-time computerized receipts</span>
+<div class="row g-2 g-md-3 mb-4">
+    <div class="col-6 col-xl-3">
+        <div class="stat-card p-2.5 p-sm-3 bg-white border-start border-4 border-success h-100">
+            <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Total Collections</div>
+            <div class="fs-6 fs-sm-5 fs-md-4 fw-bold text-success my-1">₹{{ number_format($stats['total_collected'], 2) }}</div>
+            <span class="small text-muted d-none d-sm-inline" style="font-size: 0.72rem;">All-time receipts</span>
         </div>
     </div>
-    <div class="col-sm-6 col-xl-3">
-        <div class="stat-card p-3 bg-white border-start border-4 border-primary">
-            <div class="text-muted small fw-semibold text-uppercase">Today's Collection</div>
-            <div class="fs-4 fw-bold text-primary my-1">₹{{ number_format($stats['today_collected'], 2) }}</div>
-            <span class="small text-muted">{{ now()->format('d F, Y') }}</span>
+    <div class="col-6 col-xl-3">
+        <div class="stat-card p-2.5 p-sm-3 bg-white border-start border-4 border-primary h-100">
+            <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Today's Collection</div>
+            <div class="fs-6 fs-sm-5 fs-md-4 fw-bold text-primary my-1">₹{{ number_format($stats['today_collected'], 2) }}</div>
+            <span class="small text-muted d-none d-sm-inline" style="font-size: 0.72rem;">{{ now()->format('d M, Y') }}</span>
         </div>
     </div>
-    <div class="col-sm-6 col-xl-3">
-        <div class="stat-card p-3 bg-white">
-            <div class="text-muted small fw-semibold text-uppercase">Cash Transactions</div>
-            <div class="fs-4 fw-bold text-dark my-1">{{ number_format($stats['cash_count']) }}</div>
-            <span class="small text-muted">Direct counter receipts</span>
+    <div class="col-6 col-xl-3">
+        <div class="stat-card p-2.5 p-sm-3 bg-white h-100">
+            <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Cash Transactions</div>
+            <div class="fs-5 fs-sm-4 fw-bold text-dark my-1">{{ number_format($stats['cash_count']) }}</div>
+            <span class="small text-muted d-none d-sm-inline" style="font-size: 0.72rem;">Counter receipts</span>
         </div>
     </div>
-    <div class="col-sm-6 col-xl-3">
-        <div class="stat-card p-3 bg-white">
-            <div class="text-muted small fw-semibold text-uppercase">Digital / UPI Payments</div>
-            <div class="fs-4 fw-bold text-info my-1">{{ number_format($stats['online_count']) }}</div>
-            <span class="small text-muted">UPI, Bank transfer</span>
+    <div class="col-6 col-xl-3">
+        <div class="stat-card p-2.5 p-sm-3 bg-white h-100">
+            <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Digital / UPI</div>
+            <div class="fs-5 fs-sm-4 fw-bold text-info my-1">{{ number_format($stats['online_count']) }}</div>
+            <span class="small text-muted d-none d-sm-inline" style="font-size: 0.72rem;">UPI, Bank transfer</span>
         </div>
     </div>
 </div>

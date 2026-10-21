@@ -19,29 +19,29 @@
     </div>
 
     <!-- Attendance Metric Summary Cards -->
-    <div class="row g-3 mb-4">
+    <div class="row g-2 g-md-3 mb-4">
         <div class="col-6 col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-center">
-                <div class="text-muted small text-uppercase">Total Classes</div>
-                <h3 class="fw-bold text-dark mt-2 mb-0">{{ $totalSessions }}</h3>
+            <div class="card border-0 shadow-sm rounded-4 p-2.5 p-sm-3 p-md-4 bg-white text-center h-100">
+                <div class="text-muted small text-uppercase" style="font-size: 0.72rem;">Total Classes</div>
+                <h3 class="fw-bold text-dark mt-1 mt-md-2 mb-0 fs-4 fs-md-3">{{ $totalSessions }}</h3>
             </div>
         </div>
         <div class="col-6 col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-center">
-                <div class="text-success small text-uppercase fw-semibold">Present</div>
-                <h3 class="fw-bold text-success mt-2 mb-0">{{ $presentSessions }}</h3>
+            <div class="card border-0 shadow-sm rounded-4 p-2.5 p-sm-3 p-md-4 bg-white text-center h-100">
+                <div class="text-success small text-uppercase fw-semibold" style="font-size: 0.72rem;">Present</div>
+                <h3 class="fw-bold text-success mt-1 mt-md-2 mb-0 fs-4 fs-md-3">{{ $presentSessions }}</h3>
             </div>
         </div>
         <div class="col-6 col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-center">
-                <div class="text-danger small text-uppercase fw-semibold">Absent</div>
-                <h3 class="fw-bold text-danger mt-2 mb-0">{{ $absentSessions }}</h3>
+            <div class="card border-0 shadow-sm rounded-4 p-2.5 p-sm-3 p-md-4 bg-white text-center h-100">
+                <div class="text-danger small text-uppercase fw-semibold" style="font-size: 0.72rem;">Absent</div>
+                <h3 class="fw-bold text-danger mt-1 mt-md-2 mb-0 fs-4 fs-md-3">{{ $absentSessions }}</h3>
             </div>
         </div>
         <div class="col-6 col-md-3">
-            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white text-center">
-                <div class="text-warning small text-uppercase fw-semibold">Late / Leave</div>
-                <h3 class="fw-bold text-warning mt-2 mb-0">{{ $lateSessions }}</h3>
+            <div class="card border-0 shadow-sm rounded-4 p-2.5 p-sm-3 p-md-4 bg-white text-center h-100">
+                <div class="text-warning small text-uppercase fw-semibold" style="font-size: 0.72rem;">Late / Leave</div>
+                <h3 class="fw-bold text-warning mt-1 mt-md-2 mb-0 fs-4 fs-md-3">{{ $lateSessions }}</h3>
             </div>
         </div>
     </div>

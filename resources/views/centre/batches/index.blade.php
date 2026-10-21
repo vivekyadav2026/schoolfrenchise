@@ -21,12 +21,12 @@
 </div>
 
 <!-- Batches Grid -->
-<div class="row g-4">
+<div class="row g-2 g-md-4">
     @forelse($batches as $batch)
-    <div class="col-md-6 col-xl-4">
+    <div class="col-6 col-md-6 col-xl-4">
         <div class="card border-0 rounded-4 shadow-sm h-100 hover-card">
-            <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
-                <span class="badge {{ $batch->status === 'active' ? 'bg-success' : 'bg-secondary' }}">
+            <div class="card-header bg-white py-2 py-md-3 border-bottom d-flex justify-content-between align-items-center">
+                <span class="badge {{ $batch->status === 'active' ? 'bg-success' : 'bg-secondary' }}" style="font-size: 0.65rem;">
                     {{ ucfirst($batch->status) }}
                 </span>
                 <div class="dropdown">
@@ -47,30 +47,32 @@
                     </ul>
                 </div>
             </div>
-            <div class="card-body p-4">
-                <h5 class="fw-bold text-dark mb-1">{{ $batch->batch_name }}</h5>
-                <div class="text-primary small fw-semibold mb-3">
+            <div class="card-body p-2.5 p-sm-3 p-md-4 d-flex flex-column">
+                <h6 class="fw-bold text-dark mb-1 small fs-md-6 text-truncate">{{ $batch->batch_name }}</h6>
+                <div class="text-primary small fw-semibold mb-2 mb-md-3 text-truncate" style="font-size: 0.72rem;">
                     <i class="fa-solid fa-graduation-cap me-1"></i>{{ $batch->course?->course_name ?? 'All Courses' }}
                 </div>
 
-                <div class="bg-light p-3 rounded-3 small mb-3">
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="text-muted"><i class="fa-solid fa-clock me-1"></i>Shift Timing:</span>
-                        <span class="fw-bold text-dark">{{ $batch->start_time }} - {{ $batch->end_time }}</span>
+                <div class="bg-light p-2 p-md-3 rounded-3 small mb-2 mb-md-3" style="font-size: 0.72rem;">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span class="text-muted"><i class="fa-solid fa-clock me-1"></i>Timing:</span>
+                        <span class="fw-bold text-dark">{{ $batch->start_time }}</span>
                     </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span class="text-muted"><i class="fa-solid fa-calendar-days me-1"></i>Working Days:</span>
+                    <div class="d-flex justify-content-between mb-1 d-none d-sm-flex">
+                        <span class="text-muted"><i class="fa-solid fa-calendar-days me-1"></i>Days:</span>
                         <span class="fw-semibold text-dark">{{ $batch->days }}</span>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <span class="text-muted"><i class="fa-solid fa-users-line me-1"></i>Enrolled Students:</span>
-                        <span class="fw-bold text-primary">{{ $batch->admissions_count }} Candidates</span>
+                        <span class="text-muted"><i class="fa-solid fa-users-line me-1"></i>Students:</span>
+                        <span class="fw-bold text-primary">{{ $batch->admissions_count }}</span>
                     </div>
                 </div>
 
-                <a href="{{ route('centre.batches.attendance', $batch->id) }}" class="btn btn-outline-primary w-100 rounded-pill fw-semibold">
-                    <i class="fa-solid fa-clipboard-user me-1"></i>Mark Today's Attendance
-                </a>
+                <div class="mt-auto">
+                    <a href="{{ route('centre.batches.attendance', $batch->id) }}" class="btn btn-outline-primary w-100 rounded-pill fw-semibold py-1" style="font-size: 0.75rem;">
+                        <i class="fa-solid fa-clipboard-user me-1"></i>Attendance
+                    </a>
+                </div>
             </div>
         </div>
     </div>

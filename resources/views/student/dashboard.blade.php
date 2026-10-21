@@ -46,28 +46,28 @@
     </div>
 
     <!-- 1. Top Metrics: Total Dues, Total Fees, Attendance Rate -->
-    <div class="row g-3 mb-4">
+    <div class="row g-2 g-md-3 mb-4">
         <!-- Card 1: Total Dues -->
-        <div class="col-12 col-md-4">
-            <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
-                <div class="card-body p-4 d-flex flex-column justify-content-between">
+        <div class="col-6 col-md-4">
+            <div class="card border border-light-subtle shadow-sm rounded-4 h-100 bg-white">
+                <div class="card-body p-3 p-md-4 d-flex flex-column justify-content-between">
                     <div class="d-flex align-items-center justify-content-between mb-2">
-                        <span class="text-muted fw-semibold small text-uppercase" style="letter-spacing: 0.5px;">Total Dues</span>
-                        <div class="p-2 rounded-3 {{ $totalDues > 0 ? 'bg-danger-subtle text-danger' : 'bg-success-subtle text-success' }}">
-                            <i class="fa-solid {{ $totalDues > 0 ? 'fa-hand-holding-dollar' : 'fa-check-double' }} fs-5"></i>
+                        <span class="text-muted fw-semibold small text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.5px;">Total Dues</span>
+                        <div class="p-1.5 p-md-2 rounded-3 {{ $totalDues > 0 ? 'bg-danger-subtle text-danger' : 'bg-success-subtle text-success' }}">
+                            <i class="fa-solid {{ $totalDues > 0 ? 'fa-hand-holding-dollar' : 'fa-check-double' }} fs-6 fs-md-5"></i>
                         </div>
                     </div>
                     <div>
-                        <h2 class="fw-bold mb-1 {{ $totalDues > 0 ? 'text-danger' : 'text-success' }}">
+                        <h3 class="fw-bold mb-1 fs-5 fs-sm-4 fs-md-2 {{ $totalDues > 0 ? 'text-danger' : 'text-success' }}">
                             ₹{{ number_format($totalDues, 2) }}
-                        </h2>
+                        </h3>
                         @if($totalDues > 0)
-                            <div class="text-muted small mb-3">Balance outstanding for active session</div>
-                            <a href="{{ route('student.fees.pay') }}" class="btn btn-sm btn-danger px-3 py-1 rounded-pill fw-semibold">
-                                <i class="fa-solid fa-credit-card me-1"></i> Pay Dues Now
+                            <div class="text-muted small mb-2 d-none d-sm-block" style="font-size: 0.75rem;">Balance outstanding for active session</div>
+                            <a href="{{ route('student.fees.pay') }}" class="btn btn-sm btn-danger px-2.5 px-md-3 py-1 rounded-pill fw-semibold w-100 w-sm-auto text-center" style="font-size: 0.75rem;">
+                                <i class="fa-solid fa-credit-card me-1"></i> Pay Now
                             </a>
                         @else
-                            <div class="text-success small fw-semibold">
+                            <div class="text-success small fw-semibold" style="font-size: 0.75rem;">
                                 <i class="fa-solid fa-circle-check me-1"></i> All dues cleared
                             </div>
                         @endif
@@ -77,20 +77,20 @@
         </div>
 
         <!-- Card 2: Total Fees & Paid -->
-        <div class="col-12 col-md-4">
-            <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
-                <div class="card-body p-4 d-flex flex-column justify-content-between">
+        <div class="col-6 col-md-4">
+            <div class="card border border-light-subtle shadow-sm rounded-4 h-100 bg-white">
+                <div class="card-body p-3 p-md-4 d-flex flex-column justify-content-between">
                     <div class="d-flex align-items-center justify-content-between mb-2">
-                        <span class="text-muted fw-semibold small text-uppercase" style="letter-spacing: 0.5px;">Total Fees</span>
-                        <div class="p-2 rounded-3 bg-primary-subtle text-primary">
-                            <i class="fa-solid fa-wallet fs-5"></i>
+                        <span class="text-muted fw-semibold small text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.5px;">Total Fees</span>
+                        <div class="p-1.5 p-md-2 rounded-3 bg-primary-subtle text-primary">
+                            <i class="fa-solid fa-wallet fs-6 fs-md-5"></i>
                         </div>
                     </div>
                     <div>
-                        <h2 class="fw-bold mb-1 text-dark">₹{{ number_format($totalFees, 2) }}</h2>
-                        <div class="d-flex align-items-center justify-content-between small text-muted mb-2">
+                        <h3 class="fw-bold mb-1 text-dark fs-5 fs-sm-4 fs-md-2">₹{{ number_format($totalFees, 2) }}</h3>
+                        <div class="d-flex align-items-center justify-content-between small text-muted mb-2" style="font-size: 0.72rem;">
                             <span>Paid: <strong class="text-success">₹{{ number_format($totalPaid, 2) }}</strong></span>
-                            <span>{{ $totalFees > 0 ? round(($totalPaid / $totalFees) * 100) : 0 }}% Paid</span>
+                            <span>{{ $totalFees > 0 ? round(($totalPaid / $totalFees) * 100) : 0 }}%</span>
                         </div>
                         <div class="progress rounded-pill" style="height: 6px;">
                             <div class="progress-bar bg-success rounded-pill" role="progressbar" style="width: {{ $totalFees > 0 ? min(100, round(($totalPaid / $totalFees) * 100)) : 0 }}%"></div>
@@ -102,20 +102,20 @@
 
         <!-- Card 3: Attendance Performance -->
         <div class="col-12 col-md-4">
-            <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
-                <div class="card-body p-4 d-flex flex-column justify-content-between">
+            <div class="card border border-light-subtle shadow-sm rounded-4 h-100 bg-white">
+                <div class="card-body p-3 p-md-4 d-flex flex-column justify-content-between">
                     <div class="d-flex align-items-center justify-content-between mb-2">
-                        <span class="text-muted fw-semibold small text-uppercase" style="letter-spacing: 0.5px;">Attendance</span>
-                        <div class="p-2 rounded-3 bg-info-subtle text-info">
-                            <i class="fa-solid fa-user-check fs-5"></i>
+                        <span class="text-muted fw-semibold small text-uppercase" style="font-size: 0.72rem; letter-spacing: 0.5px;">Attendance</span>
+                        <div class="p-1.5 p-md-2 rounded-3 bg-info-subtle text-info">
+                            <i class="fa-solid fa-user-check fs-6 fs-md-5"></i>
                         </div>
                     </div>
                     <div>
-                        <h2 class="fw-bold mb-1 text-dark">{{ $attendanceRate }}%</h2>
-                        <div class="text-muted small mb-2">
+                        <h3 class="fw-bold mb-1 text-dark fs-5 fs-sm-4 fs-md-2">{{ $attendanceRate }}%</h3>
+                        <div class="text-muted small mb-2" style="font-size: 0.75rem;">
                             Attended <strong>{{ $presentSessions }}</strong> of <strong>{{ $totalSessions }}</strong> logged sessions
                         </div>
-                        <a href="{{ route('student.attendance') }}" class="btn btn-sm btn-outline-primary px-3 py-1 rounded-pill fw-semibold">
+                        <a href="{{ route('student.attendance') }}" class="btn btn-sm btn-outline-primary px-3 py-1 rounded-pill fw-semibold" style="font-size: 0.75rem;">
                             <i class="fa-solid fa-clipboard-user me-1"></i> View Attendance Ledger
                         </a>
                     </div>
@@ -125,41 +125,41 @@
     </div>
 
     <!-- 2. Quick Action Shortcuts Row -->
-    <div class="row g-3 mb-4">
+    <div class="row g-2 g-md-3 mb-4">
         <div class="col-6 col-md-3">
-            <a href="{{ route('student.fees.history') }}" class="card border-0 shadow-sm rounded-4 p-3 bg-white text-decoration-none text-center h-100 hover-scale">
-                <div class="rounded-circle bg-success-subtle text-success mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+            <a href="{{ route('student.fees.history') }}" class="card border-0 shadow-sm rounded-4 p-2.5 p-md-3 bg-white text-decoration-none text-center h-100 hover-scale">
+                <div class="rounded-circle bg-success-subtle text-success mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
                     <i class="fa-solid fa-receipt fs-5"></i>
                 </div>
                 <div class="fw-bold text-dark small">Recent Payments</div>
-                <div class="text-muted" style="font-size: 0.75rem;">Download fee receipts</div>
+                <div class="text-muted d-none d-sm-block" style="font-size: 0.72rem;">Download fee receipts</div>
             </a>
         </div>
         <div class="col-6 col-md-3">
-            <a href="{{ route('student.id-card') }}" class="card border-0 shadow-sm rounded-4 p-3 bg-white text-decoration-none text-center h-100 hover-scale">
-                <div class="rounded-circle bg-primary-subtle text-primary mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+            <a href="{{ route('student.id-card') }}" class="card border-0 shadow-sm rounded-4 p-2.5 p-md-3 bg-white text-decoration-none text-center h-100 hover-scale">
+                <div class="rounded-circle bg-primary-subtle text-primary mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
                     <i class="fa-solid fa-id-card fs-5"></i>
                 </div>
                 <div class="fw-bold text-dark small">Digital ID Card</div>
-                <div class="text-muted" style="font-size: 0.75rem;">Print & download card</div>
+                <div class="text-muted d-none d-sm-block" style="font-size: 0.72rem;">Print & download card</div>
             </a>
         </div>
         <div class="col-6 col-md-3">
-            <a href="{{ route('student.admission-form') }}" class="card border-0 shadow-sm rounded-4 p-3 bg-white text-decoration-none text-center h-100 hover-scale">
-                <div class="rounded-circle bg-info-subtle text-info mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+            <a href="{{ route('student.admission-form') }}" class="card border-0 shadow-sm rounded-4 p-2.5 p-md-3 bg-white text-decoration-none text-center h-100 hover-scale">
+                <div class="rounded-circle bg-info-subtle text-info mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
                     <i class="fa-solid fa-file-contract fs-5"></i>
                 </div>
                 <div class="fw-bold text-dark small">Admission Form</div>
-                <div class="text-muted" style="font-size: 0.75rem;">View verified dossier</div>
+                <div class="text-muted d-none d-sm-block" style="font-size: 0.72rem;">View verified dossier</div>
             </a>
         </div>
         <div class="col-6 col-md-3">
-            <a href="{{ route('student.study-materials') }}" class="card border-0 shadow-sm rounded-4 p-3 bg-white text-decoration-none text-center h-100 hover-scale">
-                <div class="rounded-circle bg-warning-subtle text-warning mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px;">
+            <a href="{{ route('student.study-materials') }}" class="card border-0 shadow-sm rounded-4 p-2.5 p-md-3 bg-white text-decoration-none text-center h-100 hover-scale">
+                <div class="rounded-circle bg-warning-subtle text-warning mx-auto mb-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px;">
                     <i class="fa-solid fa-book-bookmark fs-5"></i>
                 </div>
                 <div class="fw-bold text-dark small">Study Materials</div>
-                <div class="text-muted" style="font-size: 0.75rem;">Access PDF course notes</div>
+                <div class="text-muted d-none d-sm-block" style="font-size: 0.72rem;">Access PDF course notes</div>
             </a>
         </div>
     </div>
@@ -192,29 +192,29 @@
                             <p class="text-muted small mt-2 mb-0">{{ Str::limit($admission->course->description, 140) }}</p>
                         </div>
 
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <div class="border rounded-3 p-3">
-                                    <div class="text-muted small"><i class="fa-regular fa-clock me-1 text-primary"></i> Course Duration</div>
-                                    <div class="fw-bold text-dark mt-1">{{ $admission->course->duration ?? 'Standard' }}</div>
+                        <div class="row g-2 g-md-3">
+                            <div class="col-6">
+                                <div class="border rounded-3 p-2.5 p-md-3 h-100">
+                                    <div class="text-muted small" style="font-size: 0.72rem;"><i class="fa-regular fa-clock me-1 text-primary"></i> Course Duration</div>
+                                    <div class="fw-bold text-dark mt-1 small fs-md-6">{{ $admission->course->duration ?? 'Standard' }}</div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="border rounded-3 p-3">
-                                    <div class="text-muted small"><i class="fa-solid fa-users-line me-1 text-primary"></i> Assigned Batch</div>
-                                    <div class="fw-bold text-dark mt-1">{{ $admission->batch?->batch_name ?? 'Regular Shift' }}</div>
+                            <div class="col-6">
+                                <div class="border rounded-3 p-2.5 p-md-3 h-100">
+                                    <div class="text-muted small" style="font-size: 0.72rem;"><i class="fa-solid fa-users-line me-1 text-primary"></i> Assigned Batch</div>
+                                    <div class="fw-bold text-dark mt-1 small fs-md-6">{{ $admission->batch?->batch_name ?? 'Regular Shift' }}</div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="border rounded-3 p-3">
-                                    <div class="text-muted small"><i class="fa-regular fa-calendar-check me-1 text-primary"></i> Enrolment Date</div>
-                                    <div class="fw-bold text-dark mt-1">{{ $admission->admission_date ? $admission->admission_date->format('d M, Y') : 'N/A' }}</div>
+                            <div class="col-6">
+                                <div class="border rounded-3 p-2.5 p-md-3 h-100">
+                                    <div class="text-muted small" style="font-size: 0.72rem;"><i class="fa-regular fa-calendar-check me-1 text-primary"></i> Enrolment Date</div>
+                                    <div class="fw-bold text-dark mt-1 small fs-md-6">{{ $admission->admission_date ? $admission->admission_date->format('d M, Y') : 'N/A' }}</div>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="border rounded-3 p-3">
-                                    <div class="text-muted small"><i class="fa-solid fa-shield-halved me-1 text-primary"></i> Student Status</div>
-                                    <div class="fw-bold text-success mt-1">{{ ucfirst($student->status ?? 'Active') }}</div>
+                            <div class="col-6">
+                                <div class="border rounded-3 p-2.5 p-md-3 h-100">
+                                    <div class="text-muted small" style="font-size: 0.72rem;"><i class="fa-solid fa-shield-halved me-1 text-primary"></i> Student Status</div>
+                                    <div class="fw-bold text-success mt-1 small fs-md-6">{{ ucfirst($student->status ?? 'Active') }}</div>
                                 </div>
                             </div>
                         </div>

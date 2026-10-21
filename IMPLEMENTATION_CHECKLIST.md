@@ -591,3 +591,43 @@
 - [x] **16.5. End-to-End Test Suite Verification**
   - Executed full PHPUnit test suite: **269 tests passed, 1,229 assertions, 100% OK (0 failures, 0 errors)**.
 
+---
+
+### Phase 17: Mobile 2-Cards-Per-Row Grid System, Modern Card Aesthetics & Premium Hero/Banner Redesign - 100% Complete & Verified
+- [x] **17.1. Global Mobile 2-Cards-Per-Row Responsive Grid (`public/css/drishti-custom.css`, multiple Blade views)**
+  - Re-architected all card grid containers across public pages, student portal, franchise centre portal, and admin portal to render cleanly as **2 cards per row (`col-6`) on mobile screens (320px, 375px, 390px, 430px)** instead of stacking 1 per row.
+  - Implemented `.row.g-2\.5` with targeted gutters (0.65rem–0.75rem) to ensure cards fit comfortably side-by-side without horizontal scrollbar or clipped text.
+  - Public pages upgraded:
+    - `resources/views/pages/home.blade.php`: Why Choose Us, Popular Featured Courses, Key Facilities, Director & Patron messages.
+    - `resources/views/pages/courses/index.blade.php`: Full Course Catalog grid with duration, fee pills, and action buttons.
+    - `resources/views/pages/facilities.blade.php`: Modern computer labs, AC classrooms, library, and typing labs.
+    - `resources/views/pages/about.blade.php`: Milestones, core values, and features.
+    - `resources/views/pages/gallery.blade.php`: Image gallery cards with zoom modal trigger.
+  - Student Portal upgraded:
+    - `resources/views/student/dashboard.blade.php`: Financial KPI cards, quick action tiles, and recent notices.
+    - `resources/views/student/fees/index.blade.php`: Fee summary statistics cards.
+    - `resources/views/student/attendance.blade.php`: Monthly attendance rate cards.
+    - `resources/views/student/academic/materials.blade.php`: Study material downloads cards.
+  - Franchise Centre Portal upgraded:
+    - `resources/views/centre/dashboard.blade.php`: Key metrics, financial summary, and student stats in compact 2-col tiles.
+    - `resources/views/centre/batches/index.blade.php`, `downloads/index.blade.php`, `fees/index.blade.php`, `wallet/index.blade.php`.
+  - Admin Portal upgraded:
+    - `resources/views/admin/dashboard.blade.php`: Top analytics statistics in 2-col responsive mobile tiles.
+- [x] **17.2. Modernized Card Visual Aesthetics & Micro-interactions (`public/css/drishti-custom.css`)**
+  - Upgraded cards with soft multi-layered shadows (`box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04)`).
+  - Modern subtle border radius (`16px`) with crisp border tones (`#e2e8f0` / dark mode friendly).
+  - Added micro-interaction hover transforms (`translateY(-4px)` with smooth cubic-bezier easing).
+  - High-contrast typography, badges, and icon badges with rounded-pill shapes.
+- [x] **17.3. Premium Hero & Banner Section Redesign (`resources/views/pages/home.blade.php`, `public/css/drishti-custom.css`)**
+  - Atmospheric dark gradient background: `radial-gradient(120% 120% at 50% 0%, #1e1b4b 0%, #0f172a 45%, #030712 100%)`.
+  - Ambient glowing mesh light orbs (electric blue top-right, warm amber bottom-left) and high-tech dot-grid overlay (`.dce-hero-grid-bg`).
+  - Top Live Admission Badge with animated glowing radar pulse (`.dce-pulse-dot`): `ADMISSIONS OPEN 2026-27 | Sasbahana, Sheikhpura`.
+  - Dedicated mobile institute branding header strip (`d-md-none`) featuring logo, official institute name, and ISO certification badge.
+  - Gradient headline typography: `Empowering Youth With <span class="dce-hero-gradient-text">Practical Tech Skills</span> & Career Excellence`.
+  - High-converting CTA hierarchy: Full-width glowing primary pill (`Apply Online for Admission`) + 2-column equal-width secondary pills (`All Courses`, `Verify Cert`).
+  - Glassmorphic trust strip (`.dce-hero-trust-bar`): 1:1 Practical Ratio, Bilingual Typing Lab, Verified Diplomas.
+  - Quick Admission Enquiry Form Card: Sleek glassmorphic card with dark header, instant callback badge, touch-friendly inputs, and 100% confidential security notice.
+  - Universal Page Banner (`.dce-page-banner`): Upgraded all 24+ inner pages (About, Courses, Contact, etc.) with matching dark ambient radial gradient, glowing light accents, and responsive mobile padding.
+- [x] **17.4. Full Automated Test Suite Verification**
+  - Tested with all 29 test suites: **269 tests passed, 1,229 assertions, 100% OK (0 failures, 0 errors)**.
+

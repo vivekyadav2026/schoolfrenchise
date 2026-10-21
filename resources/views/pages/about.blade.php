@@ -30,17 +30,23 @@
                     <p class="text-secondary">
                         Every student undergoes structured practical assignments, rigorous periodical evaluations, and receives tamper-proof computerized marksheet and diploma credentials verifiable online through our dedicated portal.
                     </p>
-                    <div class="row g-3 pt-3">
-                        <div class="col-sm-6">
-                            <div class="p-3 border rounded-3 bg-light">
-                                <h5 class="fw-bold text-primary mb-1"><i class="fa-solid fa-laptop-code me-2"></i>1:1 Practical Ratio</h5>
-                                <small class="text-muted">Dedicated computer workstation for every learner</small>
+                    <div class="row g-2.5 g-sm-3 pt-3">
+                        <div class="col-6">
+                            <div class="dce-modern-feature-card h-100">
+                                <div class="dce-feature-badge" style="background: #eff6ff; color: #2563eb;">
+                                    <i class="fa-solid fa-laptop-code"></i>
+                                </div>
+                                <h6 class="dce-feature-title">1:1 Practical Ratio</h6>
+                                <p class="dce-feature-desc">Dedicated computer workstation for every learner with personal mentor guidance.</p>
                             </div>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="p-3 border rounded-3 bg-light">
-                                <h5 class="fw-bold text-success mb-1"><i class="fa-solid fa-certificate me-2"></i>Verified Credentials</h5>
-                                <small class="text-muted">QR code enabled digital certificates & marksheets</small>
+                        <div class="col-6">
+                            <div class="dce-modern-feature-card h-100">
+                                <div class="dce-feature-badge" style="background: #ecfdf5; color: #059669;">
+                                    <i class="fa-solid fa-certificate"></i>
+                                </div>
+                                <h6 class="dce-feature-title">Verified Credentials</h6>
+                                <p class="dce-feature-desc">QR code enabled digital marksheets and central diplomas verifiable 24x7.</p>
                             </div>
                         </div>
                     </div>

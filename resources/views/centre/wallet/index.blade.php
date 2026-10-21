@@ -36,33 +36,33 @@
     </div>
 
     <div class="col-lg-8">
-        <div class="row g-3 h-100">
-            <div class="col-sm-6">
-                <div class="stat-card p-4 bg-white h-100 border-start border-4 border-success">
-                    <div class="text-muted small fw-semibold text-uppercase">Total Lifetime Credited</div>
-                    <h3 class="fw-bold text-success my-2">₹{{ number_format($wallet->total_credited, 2) }}</h3>
-                    <span class="small text-muted">Approved top-up recharges and credits</span>
+        <div class="row g-2 g-md-3 h-100">
+            <div class="col-6">
+                <div class="stat-card p-2.5 p-sm-3 p-md-4 bg-white h-100 border-start border-4 border-success">
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Total Credited</div>
+                    <h4 class="fw-bold text-success my-1 fs-6 fs-sm-5 fs-md-4">₹{{ number_format($wallet->total_credited, 2) }}</h4>
+                    <span class="small text-muted d-none d-sm-inline" style="font-size: 0.72rem;">Approved top-up recharges</span>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="stat-card p-4 bg-white h-100 border-start border-4 border-primary">
-                    <div class="text-muted small fw-semibold text-uppercase">Total Lifetime Debited</div>
-                    <h3 class="fw-bold text-dark my-2">₹{{ number_format($wallet->total_debited, 2) }}</h3>
-                    <span class="small text-muted">Admissions & exam fee settlements</span>
+            <div class="col-6">
+                <div class="stat-card p-2.5 p-sm-3 p-md-4 bg-white h-100 border-start border-4 border-primary">
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Total Debited</div>
+                    <h4 class="fw-bold text-dark my-1 fs-6 fs-sm-5 fs-md-4">₹{{ number_format($wallet->total_debited, 2) }}</h4>
+                    <span class="small text-muted d-none d-sm-inline" style="font-size: 0.72rem;">Admissions & exam fee settlements</span>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="stat-card p-4 bg-white h-100 border-start border-4 border-warning">
-                    <div class="text-muted small fw-semibold text-uppercase">Pending Top-up Requests</div>
-                    <h3 class="fw-bold text-warning-emphasis my-2">{{ $stats['pending_requests'] }}</h3>
-                    <span class="small text-muted">Amount: ₹{{ number_format($stats['pending_amount'], 2) }}</span>
+            <div class="col-6">
+                <div class="stat-card p-2.5 p-sm-3 p-md-4 bg-white h-100 border-start border-4 border-warning">
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Pending Requests</div>
+                    <h4 class="fw-bold text-warning-emphasis my-1 fs-5 fs-sm-4">{{ $stats['pending_requests'] }}</h4>
+                    <span class="small text-muted d-none d-sm-inline" style="font-size: 0.72rem;">₹{{ number_format($stats['pending_amount'], 2) }}</span>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="stat-card p-4 bg-white h-100">
-                    <div class="text-muted small fw-semibold text-uppercase">Centre Affiliation Code</div>
-                    <h3 class="fw-bold text-primary font-monospace my-2">{{ $centre->centre_code }}</h3>
-                    <span class="small text-muted">{{ $centre->centre_name }}</span>
+            <div class="col-6">
+                <div class="stat-card p-2.5 p-sm-3 p-md-4 bg-white h-100">
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Centre Code</div>
+                    <h4 class="fw-bold text-primary font-monospace my-1 fs-6 fs-sm-5 fs-md-4">{{ $centre->centre_code }}</h4>
+                    <span class="small text-muted text-truncate d-block" style="font-size: 0.72rem;">{{ $centre->centre_name }}</span>
                 </div>
             </div>
         </div>

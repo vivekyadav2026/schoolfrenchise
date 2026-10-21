@@ -34,20 +34,20 @@
             @endif
 
             <!-- Gallery Grid -->
-            <div class="row g-4" id="galleryContainer">
+            <div class="row g-2.5 g-sm-3 g-lg-4" id="galleryContainer">
                 @foreach($items as $item)
-                    <div class="col-lg-4 col-md-6 gallery-item" data-category="{{ Str::slug($item->category) }}">
-                        <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
-                            <div class="position-relative" style="height: 240px; background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);">
-                                <div class="w-100 h-100 d-flex flex-column align-items-center justify-content-center text-white p-3 text-center">
-                                    <i class="fa-solid fa-camera-retro fs-1 mb-2 text-info opacity-75"></i>
-                                    <h6 class="fw-bold mb-0 text-white">{{ $item->title }}</h6>
-                                    <small class="badge bg-warning text-dark mt-2">{{ $item->category }}</small>
+                    <div class="col-6 col-lg-4 gallery-item" data-category="{{ Str::slug($item->category) }}">
+                        <div class="card border border-light-subtle shadow-sm rounded-4 overflow-hidden h-100 transition-all">
+                            <div class="position-relative dce-gallery-thumb" style="min-height: 140px; background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);">
+                                <div class="w-100 h-100 d-flex flex-column align-items-center justify-content-center text-white p-2.5 p-md-3 text-center">
+                                    <i class="fa-solid fa-camera-retro fs-3 fs-md-2 mb-1 mb-md-2 text-info opacity-75"></i>
+                                    <h6 class="fw-bold mb-0 text-white small fs-md-6">{{ $item->title }}</h6>
+                                    <span class="badge bg-warning text-dark mt-1 mt-md-2" style="font-size: 0.65rem;">{{ $item->category }}</span>
                                 </div>
                             </div>
-                            <div class="card-body p-3">
-                                <h6 class="fw-bold text-dark mb-1">{{ $item->title }}</h6>
-                                <small class="text-muted"><i class="fa-solid fa-tag text-primary me-1"></i> {{ $item->category }}</small>
+                            <div class="card-body p-2.5 p-md-3 bg-white">
+                                <h6 class="fw-bold text-dark mb-1 small fs-md-6 text-truncate">{{ $item->title }}</h6>
+                                <small class="text-muted d-block text-truncate" style="font-size: 0.72rem;"><i class="fa-solid fa-tag text-primary me-1"></i> {{ $item->category }}</small>
                             </div>
                         </div>
                     </div>

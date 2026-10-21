@@ -59,45 +59,45 @@
 
 <!-- Materials Grid -->
 @if($materials->count() > 0)
-    <div class="row g-4">
+    <div class="row g-2 g-md-4">
         @foreach($materials as $material)
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-6 col-md-6 col-lg-4">
                 <div class="card h-100 border-0 shadow-sm rounded-4 hover-shadow transition-all">
-                    <div class="card-body p-4 d-flex flex-column">
-                        <div class="d-flex align-items-start justify-content-between mb-3">
-                            <div class="rounded-3 p-3 {{ $material->material_type === 'video' ? 'bg-danger-subtle text-danger' : 'bg-primary-subtle text-primary' }}">
+                    <div class="card-body p-2.5 p-sm-3 p-md-4 d-flex flex-column">
+                        <div class="d-flex align-items-start justify-content-between mb-2 mb-md-3">
+                            <div class="rounded-3 p-2 p-md-3 {{ $material->material_type === 'video' ? 'bg-danger-subtle text-danger' : 'bg-primary-subtle text-primary' }}">
                                 @if($material->material_type === 'video')
-                                    <i class="fa-brands fa-youtube fs-4"></i>
+                                    <i class="fa-brands fa-youtube fs-5 fs-md-4"></i>
                                 @elseif($material->material_type === 'assignment')
-                                    <i class="fa-solid fa-tasks fs-4"></i>
+                                    <i class="fa-solid fa-tasks fs-5 fs-md-4"></i>
                                 @elseif($material->material_type === 'syllabus')
-                                    <i class="fa-solid fa-book-bookmark fs-4"></i>
+                                    <i class="fa-solid fa-book-bookmark fs-5 fs-md-4"></i>
                                 @else
-                                    <i class="fa-solid fa-file-pdf fs-4"></i>
+                                    <i class="fa-solid fa-file-pdf fs-5 fs-md-4"></i>
                                 @endif
                             </div>
-                            <span class="badge {{ $material->material_type === 'video' ? 'bg-danger-subtle text-danger' : 'bg-lavender text-primary' }} text-uppercase px-2 py-1" style="font-size: 0.7rem;">
+                            <span class="badge {{ $material->material_type === 'video' ? 'bg-danger-subtle text-danger' : 'bg-lavender text-primary' }} text-uppercase px-1.5 px-md-2 py-0.5 py-md-1" style="font-size: 0.65rem;">
                                 {{ $material->material_type ?? 'Document' }}
                             </span>
                         </div>
 
-                        <h5 class="fw-bold fs-6 text-dark mb-2 line-clamp-2" title="{{ $material->title }}">
+                        <h6 class="fw-bold fs-6 text-dark mb-1 mb-md-2 line-clamp-2 small fs-md-6" title="{{ $material->title }}">
                             {{ $material->title }}
-                        </h5>
+                        </h6>
 
                         @if($material->description)
-                            <p class="text-muted small mb-3 flex-grow-1 line-clamp-2">
+                            <p class="text-muted small mb-2 mb-md-3 flex-grow-1 line-clamp-2 d-none d-sm-block" style="font-size: 0.75rem;">
                                 {{ Str::limit($material->description, 90) }}
                             </p>
                         @else
                             <div class="flex-grow-1"></div>
                         @endif
 
-                        <div class="border-top pt-3 mt-auto">
-                            <div class="d-flex align-items-center justify-content-between text-muted small mb-3">
+                        <div class="border-top pt-2 pt-md-3 mt-auto">
+                            <div class="d-flex align-items-center justify-content-between text-muted small mb-2 mb-md-3" style="font-size: 0.7rem;">
                                 <span><i class="fa-regular fa-calendar me-1"></i> {{ $material->created_at->format('d M, Y') }}</span>
                                 @if($material->subject)
-                                    <span class="text-truncate" style="max-width: 140px;" title="{{ $material->subject->subject_name }}">
+                                    <span class="text-truncate d-none d-md-inline" style="max-width: 140px;" title="{{ $material->subject->subject_name }}">
                                         <i class="fa-solid fa-layer-group me-1"></i> {{ $material->subject->subject_name }}
                                     </span>
                                 @endif
@@ -105,12 +105,12 @@
 
                             <div class="d-grid">
                                 @if($material->external_url && empty($material->file_path))
-                                    <a href="{{ $material->external_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-3">
-                                        <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Open Online Link
+                                    <a href="{{ $material->external_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary rounded-3 py-1" style="font-size: 0.75rem;">
+                                        <i class="fa-solid fa-arrow-up-right-from-square me-1"></i> Open Link
                                     </a>
                                 @else
-                                    <a href="{{ route('student.study-materials.download', $material->id) }}" class="btn btn-sm btn-primary rounded-3">
-                                        <i class="fa-solid fa-cloud-arrow-down me-1"></i> Download File
+                                    <a href="{{ route('student.study-materials.download', $material->id) }}" class="btn btn-sm btn-primary rounded-3 py-1" style="font-size: 0.75rem;">
+                                        <i class="fa-solid fa-cloud-arrow-down me-1"></i> Download
                                     </a>
                                 @endif
                             </div>

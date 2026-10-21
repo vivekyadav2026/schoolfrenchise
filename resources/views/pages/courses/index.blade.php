@@ -59,39 +59,34 @@
                     <a href="{{ route('courses.index') }}" class="btn btn-primary mt-2">View All Courses</a>
                 </div>
             @else
-                <div class="row g-4">
+                <div class="row g-2.5 g-sm-3 g-lg-4">
                     @foreach($courses as $course)
-                        <div class="col-lg-4 col-md-6">
-                            <div class="dce-course-card">
-                                <div class="dce-course-header">
-                                    <span class="dce-course-badge">{{ $course->category->name ?? 'Course' }}</span>
-                                    <div class="dce-course-code">{{ $course->course_code }}</div>
-                                    <h3 class="dce-course-title">
-                                        <a href="{{ route('courses.show', $course->slug) }}" class="text-decoration-none text-dark">
+                        <div class="col-6 col-lg-4">
+                            <div class="dce-modern-course-card h-100">
+                                <div class="dce-course-top">
+                                    <span class="dce-code-pill">{{ $course->course_code }}</span>
+                                    <span class="dce-cat-pill">{{ $course->category->name ?? 'Course' }}</span>
+                                </div>
+                                <div class="dce-course-content">
+                                    <h6 class="dce-course-name">
+                                        <a href="{{ route('courses.show', $course->slug) }}">
                                             {{ $course->course_name }}
                                         </a>
-                                    </h3>
+                                    </h6>
+                                    <div class="dce-course-features">
+                                        <span class="dce-feat-tag"><i class="fa-regular fa-clock text-primary me-1"></i>{{ $course->duration }}</span>
+                                        <span class="dce-feat-tag"><i class="fa-solid fa-certificate text-success me-1"></i>ISO Cert</span>
+                                    </div>
                                 </div>
-                                <div class="dce-course-body">
-                                    <div class="dce-course-meta">
-                                        <span><i class="fa-regular fa-clock"></i> {{ $course->duration }}</span>
-                                        <span><i class="fa-solid fa-user-graduate"></i> {{ $course->eligibility }}</span>
+                                <div class="dce-course-footer">
+                                    <div class="dce-price-box">
+                                        <span class="dce-price-lbl">Fee</span>
+                                        <span class="dce-price-val">₹{{ number_format($course->default_course_fee, 0) }}</span>
                                     </div>
-                                    <p class="text-muted small mb-3">
-                                        {{ Str::limit(strip_tags($course->syllabus), 120) }}
-                                    </p>
-                                    <hr>
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div>
-                                            <small class="text-muted d-block" style="font-size:0.75rem;">Standard Fee</small>
-                                            <span class="fw-bold text-primary fs-5">
-                                                ₹{{ number_format($course->default_course_fee, 2) }}
-                                            </span>
-                                        </div>
-                                        <a href="{{ route('courses.show', $course->slug) }}" class="btn btn-sm btn-dce-primary">
-                                            View Details <i class="fa-solid fa-chevron-right ms-1"></i>
-                                        </a>
-                                    </div>
+                                    <a href="{{ route('courses.show', $course->slug) }}" class="dce-explore-btn">
+                                        <span>Details</span>
+                                        <i class="fa-solid fa-chevron-right" style="font-size: 0.6rem;"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>

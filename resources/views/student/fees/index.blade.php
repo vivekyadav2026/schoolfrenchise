@@ -24,49 +24,49 @@
     </div>
 
     <!-- Top 3 Financial Cards -->
-    <div class="row g-3 mb-4">
-        <div class="col-12 col-md-4">
-            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+    <div class="row g-2 g-md-3 mb-4">
+        <div class="col-6 col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4 bg-white h-100">
                 <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="text-muted small text-uppercase fw-semibold">Net Course Fee</span>
-                    <div class="p-2 rounded-3 bg-primary-subtle text-primary">
-                        <i class="fa-solid fa-graduation-cap fs-5"></i>
+                    <span class="text-muted small text-uppercase fw-semibold" style="font-size: 0.72rem;">Course Fee</span>
+                    <div class="p-1.5 p-md-2 rounded-3 bg-primary-subtle text-primary">
+                        <i class="fa-solid fa-graduation-cap fs-6 fs-md-5"></i>
                     </div>
                 </div>
-                <h3 class="fw-bold text-dark mb-1">₹{{ number_format($totalFees, 2) }}</h3>
-                <div class="text-muted small">
+                <h3 class="fw-bold text-dark mb-1 fs-5 fs-sm-4 fs-md-3">₹{{ number_format($totalFees, 2) }}</h3>
+                <div class="text-muted small text-truncate" style="font-size: 0.75rem;">
                     Course: <strong>{{ $admission->course?->course_name }}</strong>
                 </div>
             </div>
         </div>
 
-        <div class="col-12 col-md-4">
-            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+        <div class="col-6 col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4 bg-white h-100">
                 <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="text-success small text-uppercase fw-semibold">Total Paid to Date</span>
-                    <div class="p-2 rounded-3 bg-success-subtle text-success">
-                        <i class="fa-solid fa-circle-check fs-5"></i>
+                    <span class="text-success small text-uppercase fw-semibold" style="font-size: 0.72rem;">Total Paid</span>
+                    <div class="p-1.5 p-md-2 rounded-3 bg-success-subtle text-success">
+                        <i class="fa-solid fa-circle-check fs-6 fs-md-5"></i>
                     </div>
                 </div>
-                <h3 class="fw-bold text-success mb-1">₹{{ number_format($totalPaid, 2) }}</h3>
-                <div class="text-muted small">
-                    {{ $totalFees > 0 ? round(($totalPaid / $totalFees) * 100) : 0 }}% of total fee cleared
+                <h3 class="fw-bold text-success mb-1 fs-5 fs-sm-4 fs-md-3">₹{{ number_format($totalPaid, 2) }}</h3>
+                <div class="text-muted small text-truncate" style="font-size: 0.75rem;">
+                    {{ $totalFees > 0 ? round(($totalPaid / $totalFees) * 100) : 0 }}% of fee cleared
                 </div>
             </div>
         </div>
 
         <div class="col-12 col-md-4">
-            <div class="card border-0 shadow-sm rounded-4 p-4 bg-white">
+            <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4 bg-white h-100">
                 <div class="d-flex align-items-center justify-content-between mb-2">
-                    <span class="text-danger small text-uppercase fw-semibold">Remaining Balance</span>
-                    <div class="p-2 rounded-3 {{ $totalDues > 0 ? 'bg-danger-subtle text-danger' : 'bg-success-subtle text-success' }}">
-                        <i class="fa-solid {{ $totalDues > 0 ? 'fa-hourglass-half' : 'fa-check-double' }} fs-5"></i>
+                    <span class="text-danger small text-uppercase fw-semibold" style="font-size: 0.72rem;">Remaining Balance</span>
+                    <div class="p-1.5 p-md-2 rounded-3 {{ $totalDues > 0 ? 'bg-danger-subtle text-danger' : 'bg-success-subtle text-success' }}">
+                        <i class="fa-solid {{ $totalDues > 0 ? 'fa-hourglass-half' : 'fa-check-double' }} fs-6 fs-md-5"></i>
                     </div>
                 </div>
-                <h3 class="fw-bold {{ $totalDues > 0 ? 'text-danger' : 'text-success' }} mb-1">
+                <h3 class="fw-bold {{ $totalDues > 0 ? 'text-danger' : 'text-success' }} mb-1 fs-5 fs-sm-4 fs-md-3">
                     ₹{{ number_format($totalDues, 2) }}
                 </h3>
-                <div class="small {{ $totalDues > 0 ? 'text-danger' : 'text-success' }}">
+                <div class="small {{ $totalDues > 0 ? 'text-danger' : 'text-success' }}" style="font-size: 0.75rem;">
                     {{ $totalDues > 0 ? 'Pending settlement' : 'All accounts settled' }}
                 </div>
             </div>

@@ -26,61 +26,61 @@
 </div>
 
 <!-- Primary Metric Cards -->
-<div class="row g-3 mb-4">
-    <div class="col-sm-6 col-xl-3">
-        <div class="dce-metric-card border-start border-primary border-4">
+<div class="row g-2 g-md-3 mb-4">
+    <div class="col-6 col-xl-3">
+        <div class="dce-metric-card border-start border-primary border-4 p-2.5 p-sm-3 p-md-4">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <div class="text-muted small fw-semibold text-uppercase">Total Students</div>
-                    <h3 class="fw-bold text-dark my-1">{{ number_format($totalStudents) }}</h3>
-                    <span class="badge bg-success-subtle text-success small">{{ $activeStudents }} Active Enrolled</span>
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Total Students</div>
+                    <h3 class="fw-bold text-dark my-1 fs-5 fs-sm-4 fs-md-3">{{ number_format($totalStudents) }}</h3>
+                    <span class="badge bg-success-subtle text-success small d-none d-sm-inline">{{ $activeStudents }} Active</span>
                 </div>
-                <div class="metric-icon-box bg-primary-subtle text-primary">
+                <div class="metric-icon-box bg-primary-subtle text-primary d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; flex-shrink: 0; font-size: 0.95rem;">
                     <i class="fa-solid fa-user-graduate"></i>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-sm-6 col-xl-3">
-        <div class="dce-metric-card border-start border-success border-4">
+    <div class="col-6 col-xl-3">
+        <div class="dce-metric-card border-start border-success border-4 p-2.5 p-sm-3 p-md-4">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <div class="text-muted small fw-semibold text-uppercase">Collected Fees</div>
-                    <h3 class="fw-bold text-success my-1">₹{{ number_format($collectedFees, 2) }}</h3>
-                    <span class="badge bg-success-subtle text-success small">Verified Ledger</span>
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Collected Fees</div>
+                    <h3 class="fw-bold text-success my-1 fs-6 fs-sm-5 fs-md-4">₹{{ number_format($collectedFees, 2) }}</h3>
+                    <span class="badge bg-success-subtle text-success small d-none d-sm-inline">Verified Ledger</span>
                 </div>
-                <div class="metric-icon-box bg-success-subtle text-success">
+                <div class="metric-icon-box bg-success-subtle text-success d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; flex-shrink: 0; font-size: 0.95rem;">
                     <i class="fa-solid fa-receipt"></i>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-sm-6 col-xl-3">
-        <div class="dce-metric-card border-start border-danger border-4">
+    <div class="col-6 col-xl-3">
+        <div class="dce-metric-card border-start border-danger border-4 p-2.5 p-sm-3 p-md-4">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <div class="text-muted small fw-semibold text-uppercase">Outstanding Dues</div>
-                    <h3 class="fw-bold text-danger my-1">₹{{ number_format($outstandingDues, 2) }}</h3>
-                    <span class="badge bg-danger-subtle text-danger small">Pending Installments</span>
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Outstanding Dues</div>
+                    <h3 class="fw-bold text-danger my-1 fs-6 fs-sm-5 fs-md-4">₹{{ number_format($outstandingDues, 2) }}</h3>
+                    <span class="badge bg-danger-subtle text-danger small d-none d-sm-inline">Pending Dues</span>
                 </div>
-                <div class="metric-icon-box bg-danger-subtle text-danger">
+                <div class="metric-icon-box bg-danger-subtle text-danger d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; flex-shrink: 0; font-size: 0.95rem;">
                     <i class="fa-solid fa-hand-holding-dollar"></i>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="col-sm-6 col-xl-3">
-        <div class="dce-metric-card border-start border-warning border-4">
+    <div class="col-6 col-xl-3">
+        <div class="dce-metric-card border-start border-warning border-4 p-2.5 p-sm-3 p-md-4">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <div class="text-muted small fw-semibold text-uppercase">Study Centres</div>
-                    <h3 class="fw-bold text-dark my-1">{{ number_format($totalCentres) }}</h3>
-                    <span class="badge bg-warning-subtle text-warning small">{{ $activeCentres }} Active Franchises</span>
+                    <div class="text-muted small fw-semibold text-uppercase" style="font-size: 0.68rem;">Study Centres</div>
+                    <h3 class="fw-bold text-dark my-1 fs-5 fs-sm-4 fs-md-3">{{ number_format($totalCentres) }}</h3>
+                    <span class="badge bg-warning-subtle text-warning small d-none d-sm-inline">{{ $activeCentres }} Franchises</span>
                 </div>
-                <div class="metric-icon-box bg-warning-subtle text-warning">
+                <div class="metric-icon-box bg-warning-subtle text-warning d-flex align-items-center justify-content-center" style="width: 36px; height: 36px; flex-shrink: 0; font-size: 0.95rem;">
                     <i class="fa-solid fa-building-columns"></i>
                 </div>
             </div>
@@ -94,37 +94,36 @@
         <h6 class="fw-bold mb-0 text-dark"><i class="fa-solid fa-scale-balanced text-primary me-2"></i>Financial Reconciliation & Gateways</h6>
         <span class="text-muted small">Updated Real-Time</span>
     </div>
-    <div class="card-body p-3">
-        <div class="row g-3 text-center">
-            <div class="col-md-3">
-                <div class="p-3 bg-light rounded-3">
-                    <div class="small text-muted text-uppercase fw-semibold">Total Revenue Collected</div>
-                    <div class="fw-bold fs-5 text-success">₹{{ number_format($collectedFees, 2) }}</div>
-                    <div class="text-muted" style="font-size: 11px;">Cash, UPI & Bank Settlements</div>
+    <div class="card-body p-2.5 p-md-3">
+        <div class="row g-2 g-md-3 text-center">
+            <div class="col-6 col-md-3">
+                <div class="p-2.5 p-md-3 bg-light rounded-3 h-100">
+                    <div class="small text-muted text-uppercase fw-semibold" style="font-size: 0.68rem;">Total Revenue</div>
+                    <div class="fw-bold fs-6 fs-md-5 text-success">₹{{ number_format($collectedFees, 2) }}</div>
+                    <div class="text-muted d-none d-sm-block" style="font-size: 11px;">Cash, UPI & Bank Settlements</div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="p-3 bg-light rounded-3">
-                    <div class="small text-muted text-uppercase fw-semibold">Online Gateway Success</div>
-                    <div class="fw-bold fs-5 text-primary">₹{{ number_format($onlineCollected, 2) }}</div>
-                    <div class="text-muted" style="font-size: 11px;">Verified Gateway Checkout</div>
+            <div class="col-6 col-md-3">
+                <div class="p-2.5 p-md-3 bg-light rounded-3 h-100">
+                    <div class="small text-muted text-uppercase fw-semibold" style="font-size: 0.68rem;">Gateway Success</div>
+                    <div class="fw-bold fs-6 fs-md-5 text-primary">₹{{ number_format($onlineCollected, 2) }}</div>
+                    <div class="text-muted d-none d-sm-block" style="font-size: 11px;">Verified Gateway Checkout</div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="p-3 bg-light rounded-3">
-                    <div class="small text-muted text-uppercase fw-semibold">Gateway Pending/Failed</div>
-                    <div class="fw-bold fs-5 text-secondary">
-                        <span class="text-warning">₹{{ number_format($onlinePending, 2) }}</span> / 
-                        <span class="text-danger">₹{{ number_format($onlineFailed, 2) }}</span>
+            <div class="col-6 col-md-3">
+                <div class="p-2.5 p-md-3 bg-light rounded-3 h-100">
+                    <div class="small text-muted text-uppercase fw-semibold" style="font-size: 0.68rem;">Gateway Pending</div>
+                    <div class="fw-bold fs-6 fs-md-5 text-secondary">
+                        <span class="text-warning">₹{{ number_format($onlinePending, 2) }}</span>
                     </div>
-                    <div class="text-muted" style="font-size: 11px;">Unsettled Checkout Attempts</div>
+                    <div class="text-muted d-none d-sm-block" style="font-size: 11px;">Unsettled Attempts</div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="p-3 bg-light rounded-3">
-                    <div class="small text-muted text-uppercase fw-semibold">Total Operating Expenses</div>
-                    <div class="fw-bold fs-5 text-danger">₹{{ number_format($totalExpenses, 2) }}</div>
-                    <div class="text-muted" style="font-size: 11px;">Salaries, Rent & Utilities</div>
+            <div class="col-6 col-md-3">
+                <div class="p-2.5 p-md-3 bg-light rounded-3 h-100">
+                    <div class="small text-muted text-uppercase fw-semibold" style="font-size: 0.68rem;">Total Expenses</div>
+                    <div class="fw-bold fs-6 fs-md-5 text-danger">₹{{ number_format($totalExpenses, 2) }}</div>
+                    <div class="text-muted d-none d-sm-block" style="font-size: 11px;">Salaries, Rent & Utilities</div>
                 </div>
             </div>
         </div>

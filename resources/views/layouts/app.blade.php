@@ -60,35 +60,33 @@
     <!-- 2. Main Navigation Bar -->
     <header class="sticky-top">
         <nav class="navbar navbar-expand-lg dce-navbar py-2 py-lg-3">
-            <div class="container">
+            <div class="container d-flex align-items-center justify-content-between flex-nowrap w-100">
                 <!-- Brand / Logo -->
-                <a class="dce-brand-logo d-flex align-items-center gap-2 text-decoration-none" href="{{ route('home') }}">
+                <a class="dce-brand-logo d-flex align-items-center gap-2 text-decoration-none text-nowrap" href="{{ route('home') }}" style="min-width: 0;">
                     <img src="{{ $instituteSettings['logo_url'] ?? asset('images/tech-era-logo.png') }}" 
                          alt="{{ $instituteSettings['institute_name'] ?? 'TECH ERA COMPUTER' }}" 
-                         class="dce-brand-img img-fluid" 
-                         style="max-height: 48px; width: auto; object-fit: contain;">
-                    <div class="dce-brand-text">
-                        <div class="dce-brand-title fw-bold">
-                            <span style="color: #0284c7;">TECH</span> <span style="color: #ea580c;">ERA</span> <span style="color: #0f172a;">COMPUTER</span>
+                         class="dce-brand-img img-fluid flex-shrink-0" 
+                         style="max-height: 42px; width: auto; object-fit: contain;">
+                    <div class="dce-brand-text text-truncate">
+                        <div class="dce-brand-title fw-bold text-nowrap">
+                            <span style="color: #0284c7;">TECH</span> <span style="color: #ea580c;">ERA</span> <span class="dce-brand-suffix" style="color: #0f172a;">COMPUTER</span>
                         </div>
-                        <div class="dce-brand-sub d-none d-sm-block">
+                        <div class="dce-brand-sub d-none d-md-block text-truncate">
                             {{ $instituteSettings['institute_tagline'] ?? 'Building Digital Skills for the Future' }}
                         </div>
                     </div>
                 </a>
 
-                <!-- Mobile Quick Action Buttons & Offcanvas Hamburger -->
-                <div class="d-flex align-items-center gap-2 d-lg-none">
-                    <a href="{{ route('student.login') }}" class="btn btn-sm btn-info text-white fw-bold px-2 py-1.5 rounded-3 d-flex align-items-center gap-1 shadow-sm" title="Student Login" style="min-height: 38px; min-width: 38px; justify-content: center;">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                        <span class="d-none d-sm-inline font-sans small">Student</span>
+                <!-- Mobile Quick Action Buttons & Offcanvas Hamburger (Always Single Row, Never Wraps) -->
+                <div class="d-flex align-items-center gap-1.5 gap-sm-2 d-lg-none flex-shrink-0 ms-2">
+                    <a href="{{ route('student.login') }}" class="btn btn-sm btn-info text-white rounded-3 d-flex align-items-center justify-content-center p-0 shadow-sm" title="Student Login" style="width: 36px; height: 36px;">
+                        <i class="fa-solid fa-graduation-cap fs-6"></i>
                     </a>
-                    <a href="{{ route('login') }}" class="btn btn-sm btn-warning text-dark fw-bold px-2 py-1.5 rounded-3 d-flex align-items-center gap-1 shadow-sm" title="Centre Login" style="min-height: 38px; min-width: 38px; justify-content: center;">
-                        <i class="fa-solid fa-building-columns"></i>
-                        <span class="d-none d-sm-inline font-sans small">Centre</span>
+                    <a href="{{ route('login') }}" class="btn btn-sm btn-warning text-dark rounded-3 d-flex align-items-center justify-content-center p-0 shadow-sm" title="Centre Login" style="width: 36px; height: 36px;">
+                        <i class="fa-solid fa-building-columns fs-6"></i>
                     </a>
-                    <button class="navbar-toggler border-0 shadow-none p-2 rounded-3 bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#dceOffcanvasNav" aria-controls="dceOffcanvasNav" aria-expanded="false" aria-label="Open Navigation Menu">
-                        <i class="fa-solid fa-bars fs-4 text-dark"></i>
+                    <button class="navbar-toggler border-0 shadow-none rounded-3 bg-light d-flex align-items-center justify-content-center p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#dceOffcanvasNav" aria-controls="dceOffcanvasNav" aria-expanded="false" aria-label="Open Navigation Menu" style="width: 36px; height: 36px;">
+                        <i class="fa-solid fa-bars fs-5 text-dark"></i>
                     </button>
                 </div>
 

@@ -23,64 +23,64 @@
                 <p class="text-muted">Designed to deliver an optimal hands-on practical computing environment for all students.</p>
             </div>
 
-            <div class="row g-4 mb-5">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
-                        <div class="dce-facility-icon">
+            <div class="row g-2.5 g-sm-3 g-lg-4 mb-4 mb-md-5">
+                <div class="col-6 col-lg-4">
+                    <div class="dce-modern-feature-card h-100">
+                        <div class="dce-feature-badge" style="background: #eff6ff; color: #2563eb;">
                             <i class="fa-solid fa-computer"></i>
                         </div>
-                        <h4 class="fw-bold mb-2">1:1 Student to Computer Ratio</h4>
-                        <p class="text-muted">Every enrolled student is allocated a dedicated workstation during lab practical hours, ensuring no shared systems or compromised practical practice.</p>
+                        <h6 class="dce-feature-title">1:1 Student Ratio</h6>
+                        <p class="dce-feature-desc">Dedicated workstation during lab practical hours, ensuring no shared systems.</p>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
-                        <div class="dce-facility-icon">
+                <div class="col-6 col-lg-4">
+                    <div class="dce-modern-feature-card h-100">
+                        <div class="dce-feature-badge" style="background: #ecfeff; color: #0891b2;">
                             <i class="fa-solid fa-wifi"></i>
                         </div>
-                        <h4 class="fw-bold mb-2">High-Speed Optical Broadband</h4>
-                        <p class="text-muted">High-bandwidth dedicated internet connections across all centres enabling seamless web designing, cloud accounting, software downloads, and online testing.</p>
+                        <h6 class="dce-feature-title">High-Speed Broadband</h6>
+                        <p class="dce-feature-desc">Dedicated internet across all labs for web design, cloud accounting, and testing.</p>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
-                        <div class="dce-facility-icon">
+                <div class="col-6 col-lg-4">
+                    <div class="dce-modern-feature-card h-100">
+                        <div class="dce-feature-badge" style="background: #fffbeb; color: #d97706;">
                             <i class="fa-solid fa-battery-three-quarters"></i>
                         </div>
-                        <h4 class="fw-bold mb-2">100% Power Backup & UPS</h4>
-                        <p class="text-muted">Continuous power backup systems and inverters ensure uninterrupted learning during power outages or load shedding.</p>
+                        <h6 class="dce-feature-title">Power Backup & UPS</h6>
+                        <p class="dce-feature-desc">Continuous inverter power ensures uninterrupted learning during power outages.</p>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
-                        <div class="dce-facility-icon">
+                <div class="col-6 col-lg-4">
+                    <div class="dce-modern-feature-card h-100">
+                        <div class="dce-feature-badge" style="background: #ecfdf5; color: #059669;">
                             <i class="fa-solid fa-chalkboard-user"></i>
                         </div>
-                        <h4 class="fw-bold mb-2">Certified Faculty & Trainers</h4>
-                        <p class="text-muted">Instructors undergo mandatory periodic training on Tally Prime, GST updates, advanced Excel formulas, and modern software paradigms.</p>
+                        <h6 class="dce-feature-title">Certified Trainers</h6>
+                        <p class="dce-feature-desc">Instructors undergo continuous updates on Tally Prime, GST, and coding.</p>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
-                        <div class="dce-facility-icon">
+                <div class="col-6 col-lg-4">
+                    <div class="dce-modern-feature-card h-100">
+                        <div class="dce-feature-badge" style="background: #eef2ff; color: #4f46e5;">
                             <i class="fa-solid fa-keyboard"></i>
                         </div>
-                        <h4 class="fw-bold mb-2">Specialized Speed Typing Labs</h4>
-                        <p class="text-muted">Equipped with specialized mechanical keyboards and automated typing tutor software for English and Hindi (Remington Gail & Inscript layouts).</p>
+                        <h6 class="dce-feature-title">Speed Typing Labs</h6>
+                        <p class="dce-feature-desc">Automated typing software for English and Hindi (Remington & Inscript).</p>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
-                    <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
-                        <div class="dce-facility-icon">
+                <div class="col-6 col-lg-4">
+                    <div class="dce-modern-feature-card h-100">
+                        <div class="dce-feature-badge" style="background: #f0fdf4; color: #16a34a;">
                             <i class="fa-brands fa-whatsapp"></i>
                         </div>
-                        <h4 class="fw-bold mb-2">Instant WhatsApp Student Desk</h4>
-                        <p class="text-muted">Direct WhatsApp integration that automatically delivers admit cards, fee confirmations, exam marks, and verified certificates straight to student smartphones.</p>
+                        <h6 class="dce-feature-title">WhatsApp Student Desk</h6>
+                        <p class="dce-feature-desc">Direct WhatsApp delivery of admit cards, fee receipts, marks, and certificates.</p>
                     </div>
                 </div>
             </div>
