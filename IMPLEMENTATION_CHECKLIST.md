@@ -552,3 +552,42 @@
   - Total Test Suites: **29 feature & unit test suites**.
   - Total Tests Passing: **269 tests passed, 1,229 assertions, 100% OK (0 failures, 0 errors)**.
 
+---
+
+### Phase 16: Mobile Responsive Redesign & Franchise Sidebar System - 100% Complete & Verified
+- [x] **16.1. Franchise Panel Persistent Sidebar Architecture (`resources/views/layouts/centre.blade.php`)**
+  - Designed sticky/persistent left sidebar for authenticated franchise users (`270px` desktop width).
+  - Top Profile Header inside sidebar displaying Centre Code badge (`DCE-1001`), Centre Name, City, Director Name, and Available Wallet Balance with direct `+ Top-up` shortcut.
+  - Collapsible desktop toggle option (compact icon mode `76px` / expanded `270px`) with `localStorage` state persistence.
+  - Slide-out Mobile Drawer with high-visibility hamburger toggle in topbar, close button in drawer header, and dark backdrop overlay (`.centre-sidebar-backdrop`).
+  - Auto-close functionality when tapping any nav link, clicking outside on backdrop, or pressing Escape key.
+  - Scroll lock on `body` (`.centre-sidebar-open`) to prevent background page movement while mobile sidebar is open.
+  - Touch-friendly tap targets: Every menu link is at least 44px in height.
+  - Complete 21+ item franchise menu structure with zero broken links:
+    - Core: Dashboard
+    - Students & Admissions: All Students, Direct Admission, Admission Forms, Digital ID Cards
+    - Academics & Batches: Batch Schedules, Daily Attendance, Attendance Reports
+    - Examinations: Exam Schedules, Hall Tickets, Marks Entry, Exam Results
+    - Resources: Study Materials, Affiliation Certificate
+    - Finance & Accounts: Fee Collections, Collect Student Fee, Fee Receipts, Outstanding Dues, Wallet & Ledger, Top-up Requests
+    - Support & Desk: Support Tickets, Create Ticket
+    - Account: Centre Profile, Change Password, Sign Out
+  - Retained fixed bottom navigation bar for quick mobile thumbzone access (Students, Attendance, Elevated Home, Fees, Menu trigger).
+- [x] **16.2. Public Website Mobile Navigation Drawer & Header (`resources/views/layouts/app.blade.php`)**
+  - Replaced standard inline navbar collapse on mobile with modern Bootstrap 5 Offcanvas slide-out drawer (`#dceOffcanvasNav`).
+  - Compact mobile topbar and navbar brand scaling cleanly across small viewports (320px, 375px, 390px, 430px).
+  - Mobile quick-action buttons for Student Login and Centre Login with touch-friendly 38x38px+ targets.
+  - Rich slide-out mobile drawer featuring quick action pills (Student Portal, Centre Login, Online Admission Enquiry), accordion dropdowns for About Institute, Student Zone, and Franchise, and full contact details.
+- [x] **16.3. Comprehensive Mobile Responsive Styling (`public/css/drishti-custom.css`)**
+  - Added dedicated media query rules for viewports: 320px, 375px, 390px, 430px, 768px, and 1024px+.
+  - Eliminated horizontal scrolling via global `overflow-x: hidden` and `max-width: 100vw`.
+  - Responsive table wrappers with smooth `-webkit-overflow-scrolling: touch`.
+  - Form input and select minimum touch height (44px) and 16px font-size to prevent unwanted mobile iOS zoom.
+  - Typography clamping for headings across small screens (`clamp(1.4rem, 5.5vw, 2.1rem)`).
+  - Relocated floating WhatsApp badge on mobile to the bottom-right (`bottom: 20px; right: 18px;`) so it never obstructs reading or bottom bars.
+- [x] **16.4. Student Portal Mobile Optimization (`resources/views/layouts/student.blade.php`)**
+  - Removed restrictive fixed min-widths in mobile header, enabling perfect rendering on 320px and 375px screens.
+  - Maintained 1-thumb mobile bottom navigation with safe content padding (`padding-bottom: 96px`).
+- [x] **16.5. End-to-End Test Suite Verification**
+  - Executed full PHPUnit test suite: **269 tests passed, 1,229 assertions, 100% OK (0 failures, 0 errors)**.
+

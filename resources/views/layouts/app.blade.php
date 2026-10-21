@@ -65,33 +65,35 @@
                 <a class="dce-brand-logo d-flex align-items-center gap-2 text-decoration-none" href="{{ route('home') }}">
                     <img src="{{ $instituteSettings['logo_url'] ?? asset('images/tech-era-logo.png') }}" 
                          alt="{{ $instituteSettings['institute_name'] ?? 'TECH ERA COMPUTER' }}" 
-                         class="img-fluid" 
-                         style="max-height: 54px; width: auto; object-fit: contain;">
-                    <div>
-                        <div class="dce-brand-title fw-bold" style="font-size: 1.35rem; line-height: 1.1;">
+                         class="dce-brand-img img-fluid" 
+                         style="max-height: 48px; width: auto; object-fit: contain;">
+                    <div class="dce-brand-text">
+                        <div class="dce-brand-title fw-bold">
                             <span style="color: #0284c7;">TECH</span> <span style="color: #ea580c;">ERA</span> <span style="color: #0f172a;">COMPUTER</span>
                         </div>
-                        <div class="dce-brand-sub" style="font-size: 0.74rem; color: #64748b; font-weight: 600;">
+                        <div class="dce-brand-sub d-none d-sm-block">
                             {{ $instituteSettings['institute_tagline'] ?? 'Building Digital Skills for the Future' }}
                         </div>
                     </div>
                 </a>
 
-                <!-- Mobile Action Buttons & Hamburger -->
+                <!-- Mobile Quick Action Buttons & Offcanvas Hamburger -->
                 <div class="d-flex align-items-center gap-2 d-lg-none">
-                    <a href="{{ route('student.login') }}" class="btn btn-sm btn-info text-white fw-bold px-2 py-1">
-                        <i class="fa-solid fa-user-graduate"></i>
+                    <a href="{{ route('student.login') }}" class="btn btn-sm btn-info text-white fw-bold px-2 py-1.5 rounded-3 d-flex align-items-center gap-1 shadow-sm" title="Student Login" style="min-height: 38px; min-width: 38px; justify-content: center;">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span class="d-none d-sm-inline font-sans small">Student</span>
                     </a>
-                    <a href="{{ route('login') }}" class="btn btn-sm btn-warning text-dark fw-bold px-2 py-1">
-                        <i class="fa-solid fa-lock"></i>
+                    <a href="{{ route('login') }}" class="btn btn-sm btn-warning text-dark fw-bold px-2 py-1.5 rounded-3 d-flex align-items-center gap-1 shadow-sm" title="Centre Login" style="min-height: 38px; min-width: 38px; justify-content: center;">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <span class="d-none d-sm-inline font-sans small">Centre</span>
                     </a>
-                    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#dceNavbarContent" aria-controls="dceNavbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler border-0 shadow-none p-2 rounded-3 bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#dceOffcanvasNav" aria-controls="dceOffcanvasNav" aria-expanded="false" aria-label="Open Navigation Menu">
+                        <i class="fa-solid fa-bars fs-4 text-dark"></i>
                     </button>
                 </div>
 
-                <!-- Navigation Links -->
-                <div class="collapse navbar-collapse" id="dceNavbarContent">
+                <!-- Desktop Navigation Links -->
+                <div class="collapse navbar-collapse d-none d-lg-flex" id="dceNavbarContent">
                     <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
@@ -102,13 +104,13 @@
                             <a class="nav-link dropdown-toggle {{ request()->is('about-us*') || request()->is('company*') || request()->is('chairman*') || request()->is('mission*') || request()->is('corporate-members*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 About Us
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('about') }}"><i class="fa-solid fa-circle-info text-primary me-2"></i>About Us</a></li>
-                                <li><a class="dropdown-item" href="{{ route('company') }}"><i class="fa-solid fa-id-card text-info me-2"></i>Company Profile</a></li>
-                                <li><a class="dropdown-item" href="{{ route('chairman') }}"><i class="fa-solid fa-user-tie text-success me-2"></i>Chairman's Message</a></li>
-                                <li><a class="dropdown-item" href="{{ route('mission') }}"><i class="fa-solid fa-bullseye text-danger me-2"></i>Mission & Vision</a></li>
-                                <li><a class="dropdown-item" href="{{ route('members') }}"><i class="fa-solid fa-users text-warning me-2"></i>Corporate Members</a></li>
-                                <li><a class="dropdown-item" href="{{ route('facilities') }}"><i class="fa-solid fa-chalkboard-user text-purple me-2"></i>Our Facilities</a></li>
+                            <ul class="dropdown-menu shadow-sm border-0 mt-2">
+                                <li><a class="dropdown-item py-2" href="{{ route('about') }}"><i class="fa-solid fa-circle-info text-primary me-2"></i>About Us</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('company') }}"><i class="fa-solid fa-id-card text-info me-2"></i>Company Profile</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('chairman') }}"><i class="fa-solid fa-user-tie text-success me-2"></i>Chairman's Message</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('mission') }}"><i class="fa-solid fa-bullseye text-danger me-2"></i>Mission & Vision</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('members') }}"><i class="fa-solid fa-users text-warning me-2"></i>Corporate Members</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('facilities') }}"><i class="fa-solid fa-chalkboard-user text-purple me-2"></i>Our Facilities</a></li>
                             </ul>
                         </li>
 
@@ -122,12 +124,12 @@
                             <a class="nav-link dropdown-toggle {{ request()->is('check-*') || request()->is('online-payment*') || request()->is('admission-enquiry*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Student Zone
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('verify.certificate') }}"><i class="fa-solid fa-certificate text-warning me-2"></i>Check Certificate / Marksheet</a></li>
-                                <li><a class="dropdown-item" href="{{ route('verify.admission') }}"><i class="fa-solid fa-id-badge text-primary me-2"></i>Check Admission Status</a></li>
-                                <li><a class="dropdown-item" href="{{ route('payment.index') }}"><i class="fa-solid fa-credit-card text-success me-2"></i>Online Fee Payment</a></li>
-                                <li><a class="dropdown-item" href="{{ route('student.login') }}"><i class="fa-solid fa-graduation-cap text-info me-2"></i>Student Login</a></li>
-                                <li><a class="dropdown-item" href="{{ route('enquiry.admission') }}"><i class="fa-solid fa-clipboard-question text-danger me-2"></i>Admission Enquiry</a></li>
+                            <ul class="dropdown-menu shadow-sm border-0 mt-2">
+                                <li><a class="dropdown-item py-2" href="{{ route('verify.certificate') }}"><i class="fa-solid fa-certificate text-warning me-2"></i>Check Certificate / Marksheet</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('verify.admission') }}"><i class="fa-solid fa-id-badge text-primary me-2"></i>Check Admission Status</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('payment.index') }}"><i class="fa-solid fa-credit-card text-success me-2"></i>Online Fee Payment</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('student.login') }}"><i class="fa-solid fa-graduation-cap text-info me-2"></i>Student Login</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('enquiry.admission') }}"><i class="fa-solid fa-clipboard-question text-danger me-2"></i>Admission Enquiry</a></li>
                             </ul>
                         </li>
 
@@ -136,11 +138,11 @@
                             <a class="nav-link dropdown-toggle {{ request()->is('franchise*') || request()->is('frenchise*') || request()->is('search_centre*') ? 'active' : '' }}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Franchise
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('franchise.apply') }}"><i class="fa-solid fa-file-signature text-primary me-2"></i>Apply for New Franchise</a></li>
-                                <li><a class="dropdown-item" href="{{ route('franchise.search') }}"><i class="fa-solid fa-magnifying-glass-location text-success me-2"></i>Search Franchise Centre</a></li>
-                                <li><a class="dropdown-item" href="{{ route('franchise.status') }}"><i class="fa-solid fa-hourglass-half text-warning me-2"></i>Franchise Application Status</a></li>
-                                <li><a class="dropdown-item" href="{{ route('login') }}"><i class="fa-solid fa-door-open text-info me-2"></i>Centre Login</a></li>
+                            <ul class="dropdown-menu shadow-sm border-0 mt-2">
+                                <li><a class="dropdown-item py-2" href="{{ route('franchise.apply') }}"><i class="fa-solid fa-file-signature text-primary me-2"></i>Apply for New Franchise</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('franchise.search') }}"><i class="fa-solid fa-magnifying-glass-location text-success me-2"></i>Search Franchise Centre</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('franchise.status') }}"><i class="fa-solid fa-hourglass-half text-warning me-2"></i>Franchise Application Status</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('login') }}"><i class="fa-solid fa-door-open text-info me-2"></i>Centre Login</a></li>
                             </ul>
                         </li>
 
@@ -155,6 +157,144 @@
                 </div>
             </div>
         </nav>
+
+        <!-- Slide-Out Mobile Navigation Drawer (Offcanvas) -->
+        <div class="offcanvas offcanvas-end d-lg-none dce-mobile-drawer" tabindex="-1" id="dceOffcanvasNav" aria-labelledby="dceOffcanvasNavLabel">
+            <div class="offcanvas-header bg-dark text-white p-3 align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                    <img src="{{ $instituteSettings['logo_url'] ?? asset('images/tech-era-logo.png') }}" 
+                         alt="{{ $instituteSettings['institute_name'] ?? 'TECH ERA COMPUTER' }}" 
+                         class="rounded bg-white p-1" 
+                         style="height: 38px; width: auto; object-fit: contain;">
+                    <div>
+                        <div class="fw-bold fs-6 lh-1" id="dceOffcanvasNavLabel">
+                            <span style="color: #38bdf8;">TECH</span> <span style="color: #fb923c;">ERA</span> COMPUTER
+                        </div>
+                        <span class="text-white-50" style="font-size: 0.68rem;">Building Digital Skills</span>
+                    </div>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body p-0 d-flex flex-column justify-content-between">
+                <div>
+                    <!-- Quick Mobile Action Buttons Bar -->
+                    <div class="p-3 bg-light border-bottom">
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <a href="{{ route('student.login') }}" class="btn btn-info text-white w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-1.5" style="min-height: 44px;">
+                                    <i class="fa-solid fa-graduation-cap"></i> Student Portal
+                                </a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{{ route('login') }}" class="btn btn-warning text-dark w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-1.5" style="min-height: 44px;">
+                                    <i class="fa-solid fa-building-columns"></i> Centre Login
+                                </a>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <a href="{{ route('enquiry.admission') }}" class="btn btn-primary w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-2" style="min-height: 44px;">
+                                    <i class="fa-solid fa-paper-plane"></i> Online Admission Enquiry
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Navigation Menu -->
+                    <ul class="list-unstyled mb-0 dce-mobile-nav-list">
+                        <li>
+                            <a href="{{ route('home') }}" class="dce-mobile-nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
+                                <i class="fa-solid fa-house me-3 text-primary"></i> Home
+                            </a>
+                        </li>
+
+                        <!-- About Us Accordion -->
+                        <li class="dce-mobile-accordion-group">
+                            <a class="dce-mobile-nav-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#mobileAboutCollapse" role="button" aria-expanded="false">
+                                <span><i class="fa-solid fa-circle-info me-3 text-info"></i> About Institute</span>
+                                <i class="fa-solid fa-chevron-down small text-muted"></i>
+                            </a>
+                            <div class="collapse {{ request()->is('about-us*') || request()->is('company*') || request()->is('chairman*') || request()->is('mission*') || request()->is('corporate-members*') ? 'show' : '' }}" id="mobileAboutCollapse">
+                                <div class="ps-4 bg-light py-1 border-start border-3 border-info ms-3">
+                                    <a href="{{ route('about') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-angle-right me-2"></i>About Us</a>
+                                    <a href="{{ route('company') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-angle-right me-2"></i>Company Profile</a>
+                                    <a href="{{ route('chairman') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-angle-right me-2"></i>Chairman's Message</a>
+                                    <a href="{{ route('mission') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-angle-right me-2"></i>Mission & Vision</a>
+                                    <a href="{{ route('members') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-angle-right me-2"></i>Corporate Members</a>
+                                    <a href="{{ route('facilities') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-angle-right me-2"></i>Our Facilities</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('courses.index') }}" class="dce-mobile-nav-item {{ request()->routeIs('courses.*') ? 'active' : '' }}">
+                                <i class="fa-solid fa-book-bookmark me-3 text-success"></i> Courses Directory
+                            </a>
+                        </li>
+
+                        <!-- Student Zone Accordion -->
+                        <li class="dce-mobile-accordion-group">
+                            <a class="dce-mobile-nav-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#mobileStudentCollapse" role="button" aria-expanded="false">
+                                <span><i class="fa-solid fa-user-graduate me-3 text-warning"></i> Student Zone</span>
+                                <i class="fa-solid fa-chevron-down small text-muted"></i>
+                            </a>
+                            <div class="collapse {{ request()->is('check-*') || request()->is('online-payment*') || request()->is('admission-enquiry*') ? 'show' : '' }}" id="mobileStudentCollapse">
+                                <div class="ps-4 bg-light py-1 border-start border-3 border-warning ms-3">
+                                    <a href="{{ route('verify.certificate') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-certificate me-2 text-warning"></i>Check Certificate / Marksheet</a>
+                                    <a href="{{ route('verify.admission') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-id-badge me-2 text-primary"></i>Check Admission Status</a>
+                                    <a href="{{ route('payment.index') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-credit-card me-2 text-success"></i>Online Fee Payment</a>
+                                    <a href="{{ route('student.login') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-graduation-cap me-2 text-info"></i>Student Login</a>
+                                    <a href="{{ route('enquiry.admission') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-clipboard-question me-2 text-danger"></i>Admission Enquiry</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- Franchise Accordion -->
+                        <li class="dce-mobile-accordion-group">
+                            <a class="dce-mobile-nav-item d-flex justify-content-between align-items-center" data-bs-toggle="collapse" href="#mobileFranchiseCollapse" role="button" aria-expanded="false">
+                                <span><i class="fa-solid fa-building-columns me-3 text-primary"></i> Franchise Panel</span>
+                                <i class="fa-solid fa-chevron-down small text-muted"></i>
+                            </a>
+                            <div class="collapse {{ request()->is('franchise*') || request()->is('frenchise*') || request()->is('search_centre*') ? 'show' : '' }}" id="mobileFranchiseCollapse">
+                                <div class="ps-4 bg-light py-1 border-start border-3 border-primary ms-3">
+                                    <a href="{{ route('franchise.apply') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-file-signature me-2 text-primary"></i>Apply for Franchise</a>
+                                    <a href="{{ route('franchise.search') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-magnifying-glass-location me-2 text-success"></i>Search Study Centre</a>
+                                    <a href="{{ route('franchise.status') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-hourglass-half me-2 text-warning"></i>Franchise Status</a>
+                                    <a href="{{ route('login') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-door-open me-2 text-info"></i>Centre Login</a>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('gallery') }}" class="dce-mobile-nav-item {{ request()->routeIs('gallery') ? 'active' : '' }}">
+                                <i class="fa-solid fa-images me-3 text-purple"></i> Campus Gallery
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('contact') }}" class="dce-mobile-nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
+                                <i class="fa-solid fa-envelope me-3 text-danger"></i> Contact Us
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Drawer Contact Footer -->
+                <div class="p-3 bg-dark text-white border-top">
+                    <div class="small fw-semibold mb-2 text-white-50"><i class="fa-solid fa-headset me-1 text-warning"></i> Need Direct Help?</div>
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <a href="tel:{{ $instituteSettings['contact_phone'] ?? '9162384660' }}" class="btn btn-sm btn-outline-light w-50 d-flex align-items-center justify-content-center gap-1.5" style="min-height: 40px;">
+                            <i class="fa-solid fa-phone text-warning"></i> Call Us
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=91{{ $instituteSettings['contact_phone'] ?? '9162384660' }}&text=Hi%20Tech%20Era%20Computer" target="_blank" class="btn btn-sm btn-success w-50 d-flex align-items-center justify-content-center gap-1.5" style="min-height: 40px;">
+                            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                    <div class="text-white-50" style="font-size: 0.72rem;">
+                        <i class="fa-solid fa-location-dot me-1 text-info"></i> {{ $instituteSettings['corporate_address'] ?? 'Sasbahana, Sheikhpura, Bihar - 801105' }}
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- 3. Animated Notice Ticker / Marquee -->
         @php

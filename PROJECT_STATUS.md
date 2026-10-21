@@ -55,18 +55,23 @@
 16. **Help & Support Desk (`/student/support`)**: Raise tickets with attachments, track conversation timeline, and receive real-time notifications.
 17. **Notifications & Security**: In-app alert bell center (`/student/notifications`) and Password Change (`/student/change-password`).
 
-### 1.5 Franchise Study Centre Portal (`/centre/*` - 15 Features)
-- Scoped Centre Dashboard (`/centre/dashboard`) with real-time KPI metric counters and active batch shortcuts.
-- Direct Student Registration with photo/ID proof uploads and automatic Roll No / Registration No generation.
-- Scoped Student Directory, Printable Admission Dossier, and Digital Student ID Cards.
-- Daily Batch Attendance Register with radio toggles (Present, Absent, Late, Leave), bulk "All Present" shortcut, and monthly attendance percentage analytics.
-- Examination Management, Batch Hall Tickets download, Internal Marks Entry (Theory, Practical, Viva), and Results Register.
-- Offline Fee Collection intake with balance validation, computerized official receipts (`RCP-YYYY-XXXXX`), and outstanding dues reporting.
-- Franchise Wallet Ledger, real-time balance tracking, and top-up recharge requests with bank/UPI transfer slips.
-- Official Printable Certificate of Authorized Study Centre (`/centre/downloads/certificate`) with Board seal.
-- Syllabi, flex banner, and academic prospectus downloads.
-- Priority Centre Support Desk with threaded replies to Head Office.
-- Centre Profile management and password updates.
+### 1.5 Franchise Study Centre Portal (`/centre/*` - Persistent Sidebar & 21 Features)
+- **Persistent Desktop Left Sidebar (`270px`)**: Rich dark navy theme (`#131b2e`), sticky positioning, independent vertical scrollbar, collapsible toggle mode (`76px` compact icon state / `270px` expanded state) with `localStorage` persistence.
+- **Centre Profile Header & Live Wallet Display**: Instant display of authorized centre code (`DCE-1001`), centre name, city, director identity, and real-time wallet balance with a 1-click top-up shortcut.
+- **Slide-Out Mobile Drawer Navigation**: Smooth CSS transition drawer with hamburger trigger in header, close button, and dark blur backdrop (`.centre-sidebar-backdrop`) with scroll-lock on `body` and auto-close on link tap.
+- **Fixed Mobile Bottom Navigation**: Retained 1-thumb touch navigation (Students, Attendance, Elevated Home Button, Fees, Menu trigger) with zero screen occlusion.
+- **Complete 21+ Franchise Menu Modules (Zero Broken Links)**:
+  - Scoped Centre Dashboard (`/centre/dashboard`) with real-time KPI metric counters and active batch shortcuts.
+  - Direct Student Registration with photo/ID proof uploads and automatic Roll No / Registration No generation.
+  - Scoped Student Directory, Printable Admission Dossier, and Digital Student ID Cards.
+  - Daily Batch Attendance Register with radio toggles (Present, Absent, Late, Leave), bulk "All Present" shortcut, and monthly attendance percentage analytics.
+  - Examination Management, Batch Hall Tickets download, Internal Marks Entry (Theory, Practical, Viva), and Results Register.
+  - Offline Fee Collection intake with balance validation, computerized official receipts (`RCP-YYYY-XXXXX`), and outstanding dues reporting.
+  - Franchise Wallet Ledger, real-time balance tracking, and top-up recharge requests with bank/UPI transfer slips.
+  - Official Printable Certificate of Authorized Study Centre (`/centre/downloads/certificate`) with Board seal.
+  - Syllabi, flex banner, and academic prospectus downloads.
+  - Priority Centre Support Desk with threaded replies to Head Office.
+  - Centre Profile management and password updates.
 
 ### 1.6 Central Administrative Panel (`/admin/*` - All 20 Modules)
 - **Module 1: Dashboard**: Nationwide KPIs, 6-month revenue trends, recent admissions, recent collections, live audit trail.

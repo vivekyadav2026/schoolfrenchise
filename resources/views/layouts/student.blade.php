@@ -235,24 +235,24 @@
     <header class="student-header py-2 text-white">
         <div class="container d-flex align-items-center justify-content-between">
             <!-- Left: Student Portal Brand Title -->
-            <div class="d-flex align-items-center gap-2" style="min-width: 140px;">
+            <div class="d-flex align-items-center gap-2">
                 <a href="{{ route('student.dashboard') }}" class="d-flex align-items-center gap-2 text-white text-decoration-none">
-                    <span class="badge rounded-pill px-3 py-1.5 fw-bold text-uppercase d-none d-sm-inline-block" style="background: rgba(255, 255, 255, 0.18); font-size: 0.75rem; letter-spacing: 0.5px;">
+                    <span class="badge rounded-pill px-2.5 px-sm-3 py-1.5 fw-bold text-uppercase d-none d-sm-inline-block" style="background: rgba(255, 255, 255, 0.18); font-size: 0.75rem; letter-spacing: 0.5px;">
                         <i class="fa-solid fa-graduation-cap me-1.5"></i> Student Portal
                     </span>
-                    <span class="d-sm-none text-white fw-bold small p-1 rounded" style="background: rgba(255, 255, 255, 0.15);">
+                    <span class="d-sm-none text-white fw-bold small p-1.5 rounded" style="background: rgba(255, 255, 255, 0.15);">
                         <i class="fa-solid fa-graduation-cap fs-5"></i>
                     </span>
                 </a>
             </div>
 
             <!-- Center: Institute Logo & Name -->
-            <div class="text-center px-2 flex-grow-1">
+            <div class="text-center px-1 px-sm-2 flex-grow-1">
                 <a href="{{ route('student.dashboard') }}" class="d-inline-flex align-items-center gap-2 text-white text-decoration-none">
                     <img src="{{ $instituteSettings['logo_url'] ?? asset('images/tech-era-logo.png') }}" 
                          alt="{{ $instituteSettings['institute_name'] ?? 'TECH ERA COMPUTER' }}" 
                          class="rounded-3 bg-white p-1 shadow-sm" 
-                         style="height: 44px; width: auto; object-fit: contain;">
+                         style="height: 38px; width: auto; object-fit: contain;">
                     <div class="text-start d-none d-md-block">
                         <div class="fw-extrabold text-white text-uppercase" style="font-size: 0.95rem; letter-spacing: 0.8px; line-height: 1.1;">
                             {{ $instituteSettings['institute_name'] ?? 'TECH ERA COMPUTER' }}
@@ -265,7 +265,7 @@
             </div>
 
             <!-- Right Controls: Notifications & Student Profile -->
-            <div class="d-flex align-items-center gap-2 gap-sm-3 justify-content-end" style="min-width: 140px;">
+            <div class="d-flex align-items-center gap-1 gap-sm-3 justify-content-end">
                 <!-- Notification Icon -->
                 <a href="{{ route('student.notifications') }}" class="text-white text-decoration-none position-relative p-2 rounded-circle hover-icon" title="Notifications">
                     <i class="fa-regular fa-bell fs-5"></i>
