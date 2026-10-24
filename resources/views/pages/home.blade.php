@@ -4,88 +4,467 @@
 @section('meta_description', 'TECH ERA COMPUTER, Sasbahana, Sheikhpura, Bihar - Leading Computer Training Institute offering ADCA, DCA, Typing, Tally Prime with GST, and Programming courses.')
 
 @section('content')
-    <!-- 1. Hero Section & Quick Admission Enquiry Form -->
-    <section class="dce-hero">
-        <div class="dce-hero-grid-bg"></div>
-        <div class="container position-relative" style="z-index: 2;">
+    <!-- 1. Hero Banner Slider Section -->
+    <section class="dce-slider-section position-relative">
+        <div id="dceHeroSlider" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+            <!-- Slider Indicators (Bottom Center Dots/Pill) -->
+            <div class="carousel-indicators dce-slider-indicators">
+                <button type="button" data-bs-target="#dceHeroSlider" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#dceHeroSlider" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#dceHeroSlider" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#dceHeroSlider" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active dce-slider-item" style="background-image: url('{{ asset('images/banners/banner1.jpg') }}');">
+                    <div class="dce-slider-overlay"></div>
+                    <div class="container dce-slider-content">
+                        <div class="row align-items-center g-4">
+                            <!-- Left Slide Content -->
+                            <div class="col-lg-8">
+                                <div class="dce-slider-badge mb-3">
+                                    <span class="badge bg-warning text-dark fw-bold px-2 py-0.5">SKILL EDUCATION</span>
+                                    <span class="small font-monospace text-light">PRACTICAL TRAINING • BETTER CAREERS</span>
+                                </div>
+                                <h1 class="dce-slider-title">
+                                    Skill Education for <br><span class="dce-slider-highlight">A Brighter Tomorrow</span>
+                                </h1>
+                                <div class="dce-slider-tagline d-flex flex-wrap align-items-center gap-2 mb-3">
+                                    <span><i class="fa-solid fa-circle-check text-warning me-1"></i> Build Skills</span>
+                                    <span class="opacity-40">|</span>
+                                    <span><i class="fa-solid fa-circle-check text-info me-1"></i> Get Certified</span>
+                                    <span class="opacity-40">|</span>
+                                    <span><i class="fa-solid fa-circle-check text-success me-1"></i> Grow Your Career</span>
+                                </div>
+                                <p class="dce-slider-desc mb-4">
+                                    Skill-based education for a better future. Build confidence, practical ability and career-ready knowledge with supportive training and digital student services.
+                                </p>
+                                <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                                    <a href="{{ route('admission.apply') }}" class="btn btn-dce-accent fw-bold px-4 py-2.5 rounded-3 shadow d-inline-flex align-items-center gap-2">
+                                        <span>Apply Now</span> <i class="fa-solid fa-arrow-right small"></i>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="btn btn-light fw-bold px-4 py-2.5 rounded-3 shadow-sm d-inline-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-book-open text-primary"></i> <span>Explore Courses</span>
+                                    </a>
+                                </div>
+                                <!-- Micro Trust Badges Row -->
+                                <div class="d-flex flex-wrap align-items-center gap-2.5 pt-2 border-top border-white border-opacity-10">
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon"><i class="fa-solid fa-award"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">Recognized</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Trusted & Certified</div>
+                                        </div>
+                                    </div>
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;"><i class="fa-solid fa-briefcase"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">Job Oriented</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Practical Training</div>
+                                        </div>
+                                    </div>
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon" style="background: rgba(34, 197, 94, 0.2); color: #4ade80;"><i class="fa-solid fa-users"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">Better Career</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Brighter Future</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right Side Course Shortcuts (Desktop) -->
+                            <div class="col-lg-4 d-none d-lg-block">
+                                <div class="d-flex flex-column gap-2.5 ps-xl-3">
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                                        <span>Long Term Courses</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                        <span>Short Term Courses</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-award"></i></div>
+                                        <span>NIELIT-Courses (Preparation)</span>
+                                    </a>
+                                    <a href="{{ route('admission.apply') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-file-signature"></i></div>
+                                        <span>APPLY FOR ONLINE COURSE</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-microchip"></i></div>
+                                        <span>HARDWARE COURSE</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item dce-slider-item" style="background-image: url('{{ asset('images/banners/banner2.jpg') }}');">
+                    <div class="dce-slider-overlay"></div>
+                    <div class="container dce-slider-content">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-8">
+                                <div class="dce-slider-badge mb-3">
+                                    <span class="badge bg-info text-white fw-bold px-2 py-0.5">ADVANCED IT DIPLOMA</span>
+                                    <span class="small font-monospace text-light">ADCA • DCA • PROGRAMMING</span>
+                                </div>
+                                <h1 class="dce-slider-title">
+                                    Master Advanced Computing & <br><span class="dce-slider-highlight">Career Diploma (ADCA)</span>
+                                </h1>
+                                <div class="dce-slider-tagline d-flex flex-wrap align-items-center gap-2 mb-3">
+                                    <span><i class="fa-solid fa-circle-check text-warning me-1"></i> MS Office Suite</span>
+                                    <span class="opacity-40">|</span>
+                                    <span><i class="fa-solid fa-circle-check text-info me-1"></i> Web Design & HTML</span>
+                                    <span class="opacity-40">|</span>
+                                    <span><i class="fa-solid fa-circle-check text-success me-1"></i> C/C++ Coding</span>
+                                </div>
+                                <p class="dce-slider-desc mb-4">
+                                    Comprehensive 12-month master diploma covering computer fundamentals, office automation, database management, and programming with 100% individual workstation access.
+                                </p>
+                                <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                                    <a href="{{ route('admission.apply') }}" class="btn btn-dce-accent fw-bold px-4 py-2.5 rounded-3 shadow d-inline-flex align-items-center gap-2">
+                                        <span>Enroll Now</span> <i class="fa-solid fa-arrow-right small"></i>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="btn btn-light fw-bold px-4 py-2.5 rounded-3 shadow-sm d-inline-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-list-check text-primary"></i> <span>View Syllabus</span>
+                                    </a>
+                                </div>
+                                <div class="d-flex flex-wrap align-items-center gap-2.5 pt-2 border-top border-white border-opacity-10">
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon"><i class="fa-solid fa-certificate"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">ISO Certified</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Govt Recognized</div>
+                                        </div>
+                                    </div>
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;"><i class="fa-solid fa-desktop"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">1:1 Practical</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Dedicated Workstation</div>
+                                        </div>
+                                    </div>
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon" style="background: rgba(34, 197, 94, 0.2); color: #4ade80;"><i class="fa-solid fa-qrcode"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">Online Verified</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">QR Marksheet</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 d-none d-lg-block">
+                                <div class="d-flex flex-column gap-2.5 ps-xl-3">
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                                        <span>Long Term Courses</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                        <span>Short Term Courses</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-award"></i></div>
+                                        <span>NIELIT-Courses (Preparation)</span>
+                                    </a>
+                                    <a href="{{ route('admission.apply') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-file-signature"></i></div>
+                                        <span>APPLY FOR ONLINE COURSE</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-microchip"></i></div>
+                                        <span>HARDWARE COURSE</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item dce-slider-item" style="background-image: url('{{ asset('images/banners/banner3.jpg') }}');">
+                    <div class="dce-slider-overlay"></div>
+                    <div class="container dce-slider-content">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-8">
+                                <div class="dce-slider-badge mb-3">
+                                    <span class="badge bg-success text-white fw-bold px-2 py-0.5">TYPING LAB & SPEED</span>
+                                    <span class="small font-monospace text-light">HINDI & ENGLISH • GOVT EXAMS</span>
+                                </div>
+                                <h1 class="dce-slider-title">
+                                    High-Speed Bilingual <br><span class="dce-slider-highlight">Hindi & English Typing Lab</span>
+                                </h1>
+                                <div class="dce-slider-tagline d-flex flex-wrap align-items-center gap-2 mb-3">
+                                    <span><i class="fa-solid fa-circle-check text-warning me-1"></i> Krutidev & Mangal</span>
+                                    <span class="opacity-40">|</span>
+                                    <span><i class="fa-solid fa-circle-check text-info me-1"></i> Live Speed Tracking</span>
+                                    <span class="opacity-40">|</span>
+                                    <span><i class="fa-solid fa-circle-check text-success me-1"></i> SSC & Beltron Prep</span>
+                                </div>
+                                <p class="dce-slider-desc mb-4">
+                                    Specialized typing lab with dedicated software for real-time WPM speed and accuracy evaluation. Prepare for state exams, court clerk, Beltron, and central govt job selections.
+                                </p>
+                                <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                                    <a href="{{ route('admission.apply') }}" class="btn btn-dce-accent fw-bold px-4 py-2.5 rounded-3 shadow d-inline-flex align-items-center gap-2">
+                                        <span>Join Typing Lab</span> <i class="fa-solid fa-arrow-right small"></i>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="btn btn-light fw-bold px-4 py-2.5 rounded-3 shadow-sm d-inline-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-keyboard text-primary"></i> <span>Check Typing Batches</span>
+                                    </a>
+                                </div>
+                                <div class="d-flex flex-wrap align-items-center gap-2.5 pt-2 border-top border-white border-opacity-10">
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon"><i class="fa-solid fa-gauge-high"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">45+ WPM</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Target Speed</div>
+                                        </div>
+                                    </div>
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;"><i class="fa-solid fa-chalkboard-user"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">Expert Mentor</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Personal Attention</div>
+                                        </div>
+                                    </div>
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon" style="background: rgba(34, 197, 94, 0.2); color: #4ade80;"><i class="fa-solid fa-file-circle-check"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">Speed Certificate</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Govt Validated</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 d-none d-lg-block">
+                                <div class="d-flex flex-column gap-2.5 ps-xl-3">
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                                        <span>Long Term Courses</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                        <span>Short Term Courses</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-award"></i></div>
+                                        <span>NIELIT-Courses (Preparation)</span>
+                                    </a>
+                                    <a href="{{ route('admission.apply') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-file-signature"></i></div>
+                                        <span>APPLY FOR ONLINE COURSE</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-microchip"></i></div>
+                                        <span>HARDWARE COURSE</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="carousel-item dce-slider-item" style="background-image: url('{{ asset('images/banners/banner4.jpg') }}');">
+                    <div class="dce-slider-overlay"></div>
+                    <div class="container dce-slider-content">
+                        <div class="row align-items-center g-4">
+                            <div class="col-lg-8">
+                                <div class="dce-slider-badge mb-3">
+                                    <span class="badge bg-danger text-white fw-bold px-2 py-0.5">FINANCIAL ACCOUNTING</span>
+                                    <span class="small font-monospace text-light">TALLY PRIME • GST BILLING • E-WAY BILL</span>
+                                </div>
+                                <h1 class="dce-slider-title">
+                                    Professional Accounting with <br><span class="dce-slider-highlight">Tally Prime & GST Billing</span>
+                                </h1>
+                                <div class="dce-slider-tagline d-flex flex-wrap align-items-center gap-2 mb-3">
+                                    <span><i class="fa-solid fa-circle-check text-warning me-1"></i> GST Invoicing</span>
+                                    <span class="opacity-40">|</span>
+                                    <span><i class="fa-solid fa-circle-check text-info me-1"></i> TDS & Payroll</span>
+                                    <span class="opacity-40">|</span>
+                                    <span><i class="fa-solid fa-circle-check text-success me-1"></i> Balance Sheet Mastery</span>
+                                </div>
+                                <p class="dce-slider-desc mb-4">
+                                    Master computerized accounting on the latest Tally Prime software. Learn real voucher entry, bank reconciliation, inventory management, and tax filing with hands-on practice.
+                                </p>
+                                <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+                                    <a href="{{ route('admission.apply') }}" class="btn btn-dce-accent fw-bold px-4 py-2.5 rounded-3 shadow d-inline-flex align-items-center gap-2">
+                                        <span>Enroll in Tally</span> <i class="fa-solid fa-arrow-right small"></i>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="btn btn-light fw-bold px-4 py-2.5 rounded-3 shadow-sm d-inline-flex align-items-center gap-2">
+                                        <i class="fa-solid fa-calculator text-primary"></i> <span>Accounting Courses</span>
+                                    </a>
+                                </div>
+                                <div class="d-flex flex-wrap align-items-center gap-2.5 pt-2 border-top border-white border-opacity-10">
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">GST Ready</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Real Billing Cases</div>
+                                        </div>
+                                    </div>
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;"><i class="fa-solid fa-building-user"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">Job Ready</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Accountant Placements</div>
+                                        </div>
+                                    </div>
+                                    <div class="dce-slider-micro-pill">
+                                        <div class="dce-slider-micro-icon" style="background: rgba(34, 197, 94, 0.2); color: #4ade80;"><i class="fa-solid fa-stamp"></i></div>
+                                        <div>
+                                            <div class="text-white small fw-bold lh-1">Authorized Cert</div>
+                                            <div class="text-white-50" style="font-size: 0.68rem;">Nationwide Valid</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 d-none d-lg-block">
+                                <div class="d-flex flex-column gap-2.5 ps-xl-3">
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                                        <span>Long Term Courses</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                        <span>Short Term Courses</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-award"></i></div>
+                                        <span>NIELIT-Courses (Preparation)</span>
+                                    </a>
+                                    <a href="{{ route('admission.apply') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-file-signature"></i></div>
+                                        <span>APPLY FOR ONLINE COURSE</span>
+                                    </a>
+                                    <a href="{{ route('courses.index') }}" class="dce-slider-side-card">
+                                        <div class="dce-slider-side-icon"><i class="fa-solid fa-microchip"></i></div>
+                                        <span>HARDWARE COURSE</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Navigation Arrows -->
+            <button class="dce-slider-btn prev border-0" type="button" data-bs-target="#dceHeroSlider" data-bs-slide="prev" aria-label="Previous Slide">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button class="dce-slider-btn next border-0" type="button" data-bs-target="#dceHeroSlider" data-bs-slide="next" aria-label="Next Slide">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- 2. Five Quick Service Cards Strip (Directly Below Banner, as in Reference Image) -->
+    <section class="dce-quick-strip py-3">
+        <div class="container">
+            <div class="row g-2.5 g-md-3 row-cols-2 row-cols-md-3 row-cols-lg-5">
+                <!-- Card 1: Registration -->
+                <div class="col">
+                    <a href="{{ route('admission.apply') }}" class="dce-quick-card" style="border-top-color: #dc2626;">
+                        <div class="dce-quick-card-icon" style="background: rgba(220, 38, 38, 0.12); color: #dc2626;">
+                            <i class="fa-solid fa-user-plus"></i>
+                        </div>
+                        <div>
+                            <div class="dce-quick-card-title">Registration</div>
+                            <div class="dce-quick-card-sub">Apply online</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right dce-quick-card-arrow"></i>
+                    </a>
+                </div>
+                <!-- Card 2: Admit Card -->
+                <div class="col">
+                    <a href="{{ route('student.login') }}" class="dce-quick-card" style="border-top-color: #f59e0b;">
+                        <div class="dce-quick-card-icon" style="background: rgba(245, 158, 11, 0.14); color: #d97706;">
+                            <i class="fa-solid fa-id-card"></i>
+                        </div>
+                        <div>
+                            <div class="dce-quick-card-title">Admit Card</div>
+                            <div class="dce-quick-card-sub">Download now</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right dce-quick-card-arrow"></i>
+                    </a>
+                </div>
+                <!-- Card 3: Student Verify -->
+                <div class="col">
+                    <a href="{{ route('verify.admission') }}" class="dce-quick-card" style="border-top-color: #10b981;">
+                        <div class="dce-quick-card-icon" style="background: rgba(16, 185, 129, 0.14); color: #059669;">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div>
+                            <div class="dce-quick-card-title">Student Verify</div>
+                            <div class="dce-quick-card-sub">Check record</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right dce-quick-card-arrow"></i>
+                    </a>
+                </div>
+                <!-- Card 4: Marksheet -->
+                <div class="col">
+                    <a href="{{ route('verify.certificate') }}" class="dce-quick-card" style="border-top-color: #8b5cf6;">
+                        <div class="dce-quick-card-icon" style="background: rgba(139, 92, 246, 0.14); color: #7c3aed;">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <div>
+                            <div class="dce-quick-card-title">Marksheet</div>
+                            <div class="dce-quick-card-sub">Verify online</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right dce-quick-card-arrow"></i>
+                    </a>
+                </div>
+                <!-- Card 5: Certificate -->
+                <div class="col col-12 col-md-auto col-lg">
+                    <a href="{{ route('verify.certificate') }}" class="dce-quick-card" style="border-top-color: #ea580c;">
+                        <div class="dce-quick-card-icon" style="background: rgba(234, 88, 12, 0.14); color: #ea580c;">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <div>
+                            <div class="dce-quick-card-title">Certificate</div>
+                            <div class="dce-quick-card-sub">Verify online</div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right dce-quick-card-arrow"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Key Highlights & Quick Admission Enquiry Form -->
+    <section class="py-5 bg-white position-relative">
+        <div class="container position-relative">
             <div class="row align-items-center g-4 g-lg-5">
-                <!-- Left Hero Pitch -->
+                <!-- Left Pitch & Badges -->
                 <div class="col-lg-7">
-                    <!-- Top Pill Badge with Live Pulse -->
-                    <div class="dce-hero-badge mb-3">
+                    <div class="dce-hero-badge mb-3 bg-dark text-white border-0">
                         <span class="dce-pulse-dot me-1"></span>
-                        <span class="fw-bold text-white font-monospace" style="font-size: 0.75rem; letter-spacing: 0.5px;">ADMISSIONS OPEN 2026-27</span>
-                        <span class="opacity-40">|</span>
-                        <span class="text-white-50 small"><i class="fa-solid fa-location-dot text-warning me-1"></i>Sasbahana, Sheikhpura</span>
+                        <span class="fw-bold font-monospace text-warning" style="font-size: 0.75rem; letter-spacing: 0.5px;">ADMISSIONS OPEN 2026-27</span>
+                        <span class="opacity-40 text-white-50">|</span>
+                        <span class="text-white-50 small"><i class="fa-solid fa-location-dot text-info me-1"></i>Sasbahana, Sheikhpura</span>
                     </div>
 
-                    <!-- Mobile Institute Brand Header -->
-                    <div class="d-flex align-items-center gap-2.5 mb-3 d-md-none">
-                        <img src="{{ $instituteSettings['logo_url'] ?? asset('images/tech-era-logo.png') }}" 
-                             alt="{{ $instituteSettings['institute_name'] ?? 'TECH ERA COMPUTER' }}" 
-                             class="bg-white p-1 rounded-2 shadow-sm" 
-                             style="max-height: 40px; width: auto; object-fit: contain;">
-                        <div>
-                            <div class="fw-extrabold text-white lh-1 small">{{ $instituteSettings['institute_name'] ?? 'TECH ERA COMPUTER' }}</div>
-                            <div class="text-info" style="font-size: 0.65rem;"><i class="fa-solid fa-circle-check text-success me-0.5"></i> ISO Certified Computer Training</div>
-                        </div>
-                    </div>
-
-                    <!-- Institute Header Card (Shown on Tablet & Desktop) -->
-                    <div class="d-none d-md-flex align-items-center gap-3 mb-3">
-                        <img src="{{ $instituteSettings['logo_url'] ?? asset('images/tech-era-logo.png') }}" 
-                             alt="{{ $instituteSettings['institute_name'] ?? 'TECH ERA COMPUTER' }}" 
-                             class="img-fluid bg-white p-2 rounded-3 shadow-lg" 
-                             style="max-height: 72px; width: auto; object-fit: contain;">
-                        <div>
-                            <div class="fw-bold text-white fs-5 lh-1">{{ $instituteSettings['institute_name'] ?? 'TECH ERA COMPUTER' }}</div>
-                            <div class="text-white-50 small mt-1"><i class="fa-solid fa-award text-warning me-1"></i> {{ $instituteSettings['institute_tagline'] ?? 'Building Digital Skills for the Future' }}</div>
-                        </div>
-                    </div>
-
-                    <h1 class="dce-hero-title mb-3">
+                    <h2 class="fw-bold text-dark mb-3" style="font-size: clamp(1.6rem, 3.2vw, 2.4rem); line-height: 1.25;">
                         Empowering Youth With <span class="dce-hero-gradient-text">Practical Tech Skills</span> & Career Excellence
-                    </h1>
+                    </h2>
 
-                    <p class="dce-hero-subtitle mb-4">
+                    <p class="text-muted mb-4" style="line-height: 1.7;">
                         Official institute for professional computer education in <strong>Sheikhpura, Bihar</strong>. High-speed 1:1 practical labs, bilingual typing, computerized Tally Prime accounting, and government-recognized certifications.
                     </p>
 
-                    <!-- Smart Responsive Buttons Layout (Single Primary + 2-Col Secondary on Mobile) -->
-                    <div class="dce-hero-cta-wrapper mb-4">
-                        <!-- Primary CTA Button with Glow -->
-                        <a href="{{ route('admission.apply') }}" class="btn btn-dce-accent btn-lg w-100 shadow-sm d-flex align-items-center justify-content-center gap-2 mb-2.5 py-2.5 rounded-pill">
-                            <i class="fa-solid fa-bolt text-warning"></i>
-                            <span class="fw-bold">Apply Online for Admission</span>
-                            <i class="fa-solid fa-arrow-right ms-1 small"></i>
-                        </a>
-
-                        <!-- Secondary CTAs in 2-Column Equal Grid on Mobile -->
-                        <div class="row g-2">
-                            <div class="col-6">
-                                <a href="{{ route('courses.index') }}" class="btn btn-dce-primary btn-lg w-100 shadow-sm d-flex align-items-center justify-content-center gap-1.5 py-2 px-2 rounded-pill">
-                                    <i class="fa-solid fa-graduation-cap"></i>
-                                    <span>All Courses</span>
-                                </a>
-                            </div>
-                            <div class="col-6">
-                                <a href="{{ route('verify.certificate') }}" class="btn btn-dce-outline btn-lg w-100 shadow-sm d-flex align-items-center justify-content-center gap-1.5 py-2 px-2 rounded-pill">
-                                    <i class="fa-solid fa-qrcode"></i>
-                                    <span>Verify Cert</span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Trust Micro-Badges Strip (Glassmorphism) -->
-                    <div class="dce-hero-trust-bar p-3 rounded-4 mb-4">
-                        <div class="row g-2.5 align-items-center">
+                    <!-- Trust Strip -->
+                    <div class="bg-light p-3.5 rounded-4 border mb-4">
+                        <div class="row g-3 align-items-center">
                             <div class="col-6 col-sm-4">
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="dce-hero-icon-pill bg-primary-subtle text-primary"><i class="fa-solid fa-laptop-code"></i></div>
                                     <div>
-                                        <div class="text-white small fw-bold lh-1">1:1 Practical Ratio</div>
-                                        <div class="text-white-50" style="font-size: 0.68rem;">Dedicated workstation</div>
+                                        <div class="text-dark small fw-bold lh-1">1:1 Practical Ratio</div>
+                                        <div class="text-muted" style="font-size: 0.68rem;">Dedicated workstation</div>
                                     </div>
                                 </div>
                             </div>
@@ -93,27 +472,36 @@
                                 <div class="d-flex align-items-center gap-2">
                                     <div class="dce-hero-icon-pill bg-warning-subtle text-warning"><i class="fa-solid fa-keyboard"></i></div>
                                     <div>
-                                        <div class="text-white small fw-bold lh-1">Bilingual Typing</div>
-                                        <div class="text-white-50" style="font-size: 0.68rem;">Hindi & English lab</div>
+                                        <div class="text-dark small fw-bold lh-1">Bilingual Typing</div>
+                                        <div class="text-muted" style="font-size: 0.68rem;">Hindi & English lab</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-4">
-                                <div class="d-flex align-items-center justify-content-start gap-2 pt-2 pt-sm-0 border-top border-top-sm-0 border-white-10">
+                                <div class="d-flex align-items-center justify-content-start gap-2 pt-2 pt-sm-0 border-top border-top-sm-0">
                                     <div class="dce-hero-icon-pill bg-success-subtle text-success"><i class="fa-solid fa-shield-halved"></i></div>
                                     <div>
-                                        <div class="text-white small fw-bold lh-1">Verified Diplomas</div>
-                                        <div class="text-white-50" style="font-size: 0.68rem;">QR code verifiable</div>
+                                        <div class="text-dark small fw-bold lh-1">Verified Diplomas</div>
+                                        <div class="text-muted" style="font-size: 0.68rem;">QR code verifiable</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ route('courses.index') }}" class="btn btn-outline-primary fw-bold px-4 py-2 rounded-pill">
+                            <i class="fa-solid fa-graduation-cap me-1"></i> Browse All Courses
+                        </a>
+                        <a href="{{ route('verify.certificate') }}" class="btn btn-outline-secondary fw-bold px-4 py-2 rounded-pill">
+                            <i class="fa-solid fa-qrcode me-1"></i> Verify Certificate
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Right Quick Admission Enquiry Form -->
+                <!-- Right Quick Admission Enquiry Form Card -->
                 <div class="col-lg-5">
-                    <div class="dce-hero-form-card">
+                    <div class="dce-hero-form-card shadow-lg border">
                         <div class="dce-hero-form-header d-flex align-items-center justify-content-between">
                             <div>
                                 <h5 class="fw-bold mb-0 text-white"><i class="fa-solid fa-graduation-cap text-warning me-2"></i>Quick Admission Enquiry</h5>

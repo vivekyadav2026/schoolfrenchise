@@ -178,4 +178,32 @@ class PublicWebsiteTest extends TestCase
             '*' => ['id', 'name'],
         ]);
     }
+
+    public function test_header_contains_student_and_franchise_login_for_desktop_and_mobile(): void
+    {
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('Student Login');
+        $response->assertSee('Franchise Login');
+        $response->assertSee(route('student.login'));
+        $response->assertSee(route('login'));
+    }
+
+    public function test_homepage_renders_hero_banner_slider_with_images_and_quick_service_cards(): void
+    {
+        $response = $this->get('/');
+        $response->assertStatus(200);
+        $response->assertSee('dceHeroSlider');
+        $response->assertSee('banner1.jpg');
+        $response->assertSee('banner2.jpg');
+        $response->assertSee('banner3.jpg');
+        $response->assertSee('banner4.jpg');
+        $response->assertSee('Long Term Courses');
+        $response->assertSee('Short Term Courses');
+        $response->assertSee('Registration');
+        $response->assertSee('Admit Card');
+        $response->assertSee('Student Verify');
+        $response->assertSee('Marksheet');
+        $response->assertSee('Certificate');
+    }
 }

@@ -33,32 +33,51 @@
 </head>
 <body>
 
-    <!-- 1. Top Header Bar -->
-    <div class="dce-topbar py-2 d-none d-lg-block">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <div class="d-flex align-items-center gap-4">
-                        <span><i class="fa-solid fa-location-dot text-info me-2"></i>{{ $instituteSettings['corporate_address'] ?? 'Sasbahana, Sheikhpura, Bihar - 801105' }}</span>
-                        <span><i class="fa-solid fa-phone text-warning me-2"></i><a href="tel:{{ $instituteSettings['contact_phone'] ?? '9162384660' }}">{{ $instituteSettings['contact_phone'] ?? '9162384660' }}</a></span>
+    <!-- Header (Sticky Topbar & Navbar) -->
+    <header class="sticky-top">
+        <!-- 1. Top Header Bar (Desktop & Mobile) -->
+        <div class="dce-topbar py-1 py-lg-2">
+            <div class="container">
+                <!-- Desktop Header Topbar (>= 992px) -->
+                <div class="row align-items-center d-none d-lg-flex">
+                    <div class="col-lg-7">
+                        <div class="d-flex align-items-center gap-4">
+                            <span><i class="fa-solid fa-location-dot text-info me-2"></i>{{ $instituteSettings['corporate_address'] ?? 'Sasbahana, Sheikhpura, Bihar - 801105' }}</span>
+                            <span><i class="fa-solid fa-phone text-warning me-2"></i><a href="tel:{{ $instituteSettings['contact_phone'] ?? '9162384660' }}">{{ $instituteSettings['contact_phone'] ?? '9162384660' }}</a></span>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 text-end">
+                        <div class="d-inline-flex gap-2">
+                            <a href="{{ route('student.login') }}" class="btn btn-sm btn-info text-white fw-bold px-3 shadow-sm dce-topbar-btn">
+                                <i class="fa-solid fa-user-graduate me-1"></i> Student Login
+                            </a>
+                            <a href="{{ route('login') }}" class="btn btn-sm btn-warning text-dark fw-bold px-3 shadow-sm dce-topbar-btn">
+                                <i class="fa-solid fa-building-columns me-1"></i> Franchise Login
+                            </a>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-4 text-end">
-                    <div class="d-inline-flex gap-2">
-                        <a href="{{ route('student.login') }}" class="btn btn-sm btn-info text-white fw-bold px-3">
-                            <i class="fa-solid fa-user-graduate me-1"></i> Student Login
+
+                <!-- Mobile & Tablet Header Topbar (< 992px) -->
+                <div class="d-flex align-items-center justify-content-between gap-1.5 gap-sm-2 d-lg-none py-1">
+                    <a href="tel:{{ $instituteSettings['contact_phone'] ?? '9162384660' }}" class="text-white text-decoration-none small d-flex align-items-center text-nowrap py-1" title="Helpline">
+                        <i class="fa-solid fa-phone text-warning me-1"></i>
+                        <span class="d-none d-sm-inline fw-semibold">{{ $instituteSettings['contact_phone'] ?? '9162384660' }}</span>
+                        <span class="d-inline d-sm-none fw-semibold" style="font-size: 0.75rem;">Help</span>
+                    </a>
+                    <div class="d-flex align-items-center gap-1.5 gap-sm-2 flex-nowrap">
+                        <a href="{{ route('student.login') }}" class="btn btn-sm btn-info text-white fw-bold d-inline-flex align-items-center justify-content-center gap-1 px-2.5 py-1 text-nowrap shadow-sm dce-topbar-btn" title="Student Login">
+                            <i class="fa-solid fa-user-graduate"></i> <span>Student Login</span>
                         </a>
-                        <a href="{{ route('login') }}" class="btn btn-sm btn-warning text-dark fw-bold px-3">
-                            <i class="fa-solid fa-building-columns me-1"></i> Centre Login
+                        <a href="{{ route('login') }}" class="btn btn-sm btn-warning text-dark fw-bold d-inline-flex align-items-center justify-content-center gap-1 px-2.5 py-1 text-nowrap shadow-sm dce-topbar-btn" title="Franchise Login">
+                            <i class="fa-solid fa-building-columns"></i> <span>Franchise Login</span>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- 2. Main Navigation Bar -->
-    <header class="sticky-top">
+        <!-- 2. Main Navigation Bar -->
         <nav class="navbar navbar-expand-lg dce-navbar py-2 py-lg-3">
             <div class="container d-flex align-items-center justify-content-between flex-nowrap w-100">
                 <!-- Brand / Logo -->
@@ -77,15 +96,9 @@
                     </div>
                 </a>
 
-                <!-- Mobile Quick Action Buttons & Offcanvas Hamburger (Always Single Row, Never Wraps) -->
-                <div class="d-flex align-items-center gap-1.5 gap-sm-2 d-lg-none flex-shrink-0 ms-2">
-                    <a href="{{ route('student.login') }}" class="btn btn-sm btn-info text-white rounded-3 d-flex align-items-center justify-content-center p-0 shadow-sm" title="Student Login" style="width: 36px; height: 36px;">
-                        <i class="fa-solid fa-graduation-cap fs-6"></i>
-                    </a>
-                    <a href="{{ route('login') }}" class="btn btn-sm btn-warning text-dark rounded-3 d-flex align-items-center justify-content-center p-0 shadow-sm" title="Centre Login" style="width: 36px; height: 36px;">
-                        <i class="fa-solid fa-building-columns fs-6"></i>
-                    </a>
-                    <button class="navbar-toggler border-0 shadow-none rounded-3 bg-light d-flex align-items-center justify-content-center p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#dceOffcanvasNav" aria-controls="dceOffcanvasNav" aria-expanded="false" aria-label="Open Navigation Menu" style="width: 36px; height: 36px;">
+                <!-- Mobile Offcanvas Hamburger Menu Toggle -->
+                <div class="d-flex align-items-center d-lg-none flex-shrink-0 ms-2">
+                    <button class="navbar-toggler border-0 shadow-none rounded-3 bg-light d-flex align-items-center justify-content-center p-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#dceOffcanvasNav" aria-controls="dceOffcanvasNav" aria-expanded="false" aria-label="Open Navigation Menu" style="width: 38px; height: 38px;">
                         <i class="fa-solid fa-bars fs-5 text-dark"></i>
                     </button>
                 </div>
@@ -140,7 +153,7 @@
                                 <li><a class="dropdown-item py-2" href="{{ route('franchise.apply') }}"><i class="fa-solid fa-file-signature text-primary me-2"></i>Apply for New Franchise</a></li>
                                 <li><a class="dropdown-item py-2" href="{{ route('franchise.search') }}"><i class="fa-solid fa-magnifying-glass-location text-success me-2"></i>Search Franchise Centre</a></li>
                                 <li><a class="dropdown-item py-2" href="{{ route('franchise.status') }}"><i class="fa-solid fa-hourglass-half text-warning me-2"></i>Franchise Application Status</a></li>
-                                <li><a class="dropdown-item py-2" href="{{ route('login') }}"><i class="fa-solid fa-door-open text-info me-2"></i>Centre Login</a></li>
+                                <li><a class="dropdown-item py-2" href="{{ route('login') }}"><i class="fa-solid fa-door-open text-info me-2"></i>Franchise Login</a></li>
                             </ul>
                         </li>
 
@@ -181,12 +194,12 @@
                         <div class="row g-2">
                             <div class="col-6">
                                 <a href="{{ route('student.login') }}" class="btn btn-info text-white w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-1.5" style="min-height: 44px;">
-                                    <i class="fa-solid fa-graduation-cap"></i> Student Portal
+                                    <i class="fa-solid fa-graduation-cap"></i> Student Login
                                 </a>
                             </div>
                             <div class="col-6">
                                 <a href="{{ route('login') }}" class="btn btn-warning text-dark w-100 fw-bold py-2 shadow-sm d-flex align-items-center justify-content-center gap-1.5" style="min-height: 44px;">
-                                    <i class="fa-solid fa-building-columns"></i> Centre Login
+                                    <i class="fa-solid fa-building-columns"></i> Franchise Login
                                 </a>
                             </div>
                             <div class="col-12 mt-2">
@@ -257,7 +270,7 @@
                                     <a href="{{ route('franchise.apply') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-file-signature me-2 text-primary"></i>Apply for Franchise</a>
                                     <a href="{{ route('franchise.search') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-magnifying-glass-location me-2 text-success"></i>Search Study Centre</a>
                                     <a href="{{ route('franchise.status') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-hourglass-half me-2 text-warning"></i>Franchise Status</a>
-                                    <a href="{{ route('login') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-door-open me-2 text-info"></i>Centre Login</a>
+                                    <a href="{{ route('login') }}" class="dce-mobile-sub-item"><i class="fa-solid fa-door-open me-2 text-info"></i>Franchise Login</a>
                                 </div>
                             </div>
                         </li>

@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 220" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="bgGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#170b2c" />
+      <stop offset="50%" stop-color="#361463" />
+      <stop offset="100%" stop-color="#100720" />
+    </linearGradient>
+    
+    <linearGradient id="glowGrad3" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#ffd700" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0.8" />
+    </linearGradient>
+
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff176" />
+      <stop offset="50%" stop-color="#fbc02d" />
+      <stop offset="100%" stop-color="#f57f17" />
+    </linearGradient>
+
+    <radialGradient id="ambient3" cx="85%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#c084fc" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#c084fc" stop-opacity="0" />
+    </radialGradient>
+
+    <filter id="dropShadow3" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+
+    <filter id="neonGlow3" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <style>
+    .font-heavy { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 800; }
+    .font-bold { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 700; }
+    .font-medium { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; font-weight: 500; }
+  </style>
+
+  <!-- Base Card Background -->
+  <rect x="0" y="0" width="1200" height="220" rx="20" fill="url(#bgGrad3)"/>
+  
+  <!-- Ambient Light Spot -->
+  <rect x="0" y="0" width="1200" height="220" rx="20" fill="url(#ambient3)" />
+
+  <!-- High-Tech Cyber Corner Slashes (Matching Image 1 Aesthetic) -->
+  <!-- Top Left Slash -->
+  <polygon points="0,0 70,0 20,40 0,40" fill="#c084fc" opacity="0.85"/>
+  <polygon points="12,0 35,0 0,25 0,10" fill="#ffd700" opacity="0.9"/>
+  
+  <!-- Bottom Right Slash -->
+  <polygon points="1200,220 1130,220 1180,180 1200,180" fill="#c084fc" opacity="0.85"/>
+  <polygon points="1188,220 1165,220 1200,195 1200,210" fill="#ffd700" opacity="0.9"/>
+
+  <!-- Subtle Circuit / Dot Grid Texture Overlay -->
+  <g opacity="0.07" fill="#ffffff">
+    <circle cx="100" cy="50" r="2"/><circle cx="140" cy="50" r="2"/><circle cx="180" cy="50" r="2"/><circle cx="220" cy="50" r="2"/>
+    <circle cx="100" cy="80" r="2"/><circle cx="140" cy="80" r="2"/><circle cx="180" cy="80" r="2"/><circle cx="220" cy="80" r="2"/>
+    <circle cx="100" cy="110" r="2"/><circle cx="140" cy="110" r="2"/><circle cx="180" cy="110" r="2"/><circle cx="220" cy="110" r="2"/>
+    <circle cx="100" cy="140" r="2"/><circle cx="140" cy="140" r="2"/><circle cx="180" cy="140" r="2"/><circle cx="220" cy="140" r="2"/>
+    <circle cx="100" cy="170" r="2"/><circle cx="140" cy="170" r="2"/><circle cx="180" cy="170" r="2"/><circle cx="220" cy="170" r="2"/>
+  </g>
+
+  <!-- Left Glowing Accent Border Line -->
+  <line x1="2" y1="35" x2="2" y2="185" stroke="#c084fc" stroke-width="4" stroke-linecap="round" opacity="0.75"/>
+
+  <!-- Outer Rounded Tech Border -->
+  <rect x="2" y="2" width="1196" height="216" rx="18" fill="none" stroke="#c084fc" stroke-width="1.5" opacity="0.4" />
+
+  <!-- ================= LEFT CONTENT AREA ================= -->
+  <!-- Top Category / Offer Badge -->
+  <g transform="translate(60, 24)">
+    <rect x="0" y="0" width="310" height="26" rx="13" fill="#c084fc" filter="url(#dropShadow3)"/>
+    <text x="155" y="18" text-anchor="middle" class="font-bold" font-size="12" fill="#1e1b4b" letter-spacing="0.5">💼 JOB-READY CERTIFICATION</text>
+  </g>
+
+  <!-- Main Headline Title (Bold & Dynamic) -->
+  <g transform="translate(60, 84)">
+    <text x="0" y="0" class="font-heavy" font-size="27" fill="#ffffff" filter="url(#dropShadow3)">
+      TALLY PRIME + GST + ADVANCED EXCEL
+    </text>
+    <text x="0" y="32" class="font-heavy" font-size="25" fill="url(#goldGrad)" filter="url(#dropShadow3)">
+      COMBO DEAL @ ₹1,999/- ONLY
+    </text>
+  </g>
+
+  <!-- Subtitle with Key Features -->
+  <g transform="translate(60, 146)">
+    <text x="0" y="0" class="font-medium" font-size="14.5" fill="#e2e8f0" opacity="0.92">
+      Real Practical GST Returns, e-Way Bills, Balance Sheet, Payroll & Corporate Accounting!
+    </text>
+  </g>
+
+  <!-- Modern Pill CTA Button -->
+  <g transform="translate(60, 164)" filter="url(#dropShadow3)">
+    <rect x="0" y="0" width="230" height="38" rx="19" fill="#ffd000" />
+    <rect x="1" y="1" width="228" height="36" rx="18" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
+    <text x="105" y="24" text-anchor="middle" class="font-heavy" font-size="13.5" fill="#0a192f" letter-spacing="0.3">Enroll in Accounting</text>
+    <!-- Arrow Circle -->
+    <circle cx="205" cy="19" r="12" fill="#0a192f" />
+    <path d="M 202 14 L 207 19 L 202 24" fill="none" stroke="#ffd000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Institute Branding Micro-Tag -->
+  <g transform="translate(310, 188)">
+    <text x="0" y="0" class="font-bold" font-size="12" fill="#c084fc" opacity="0.9">
+      TECH ERA COMPUTER • SASBAHANA, SHEIKHPURA
+    </text>
+  </g>
+
+  <!-- ================= RIGHT 3D OFFER STAMP MEDALLION ================= -->
+  <g transform="translate(1030, 110)" filter="url(#dropShadow3)">
+    <!-- Glowing Halo Backing -->
+    <circle cx="0" cy="0" r="85" fill="#c084fc" opacity="0.12" filter="url(#neonGlow3)" />
+    <circle cx="0" cy="0" r="72" fill="#170b2c" stroke="#c084fc" stroke-width="2.5" />
+    
+    <!-- Outer Dashed Tech Orbit -->
+    <circle cx="0" cy="0" r="65" fill="none" stroke="#ffd700" stroke-width="2" stroke-dasharray="6,4" opacity="0.8" />
+    
+    <!-- Inner Solid Core -->
+    <circle cx="0" cy="0" r="56" fill="url(#bgGrad3)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+
+    <!-- Decorative Stars -->
+    <path d="M -35 -28 L -33 -23 L -28 -23 L -32 -20 L -30 -15 L -35 -18 L -40 -15 L -38 -20 L -42 -23 L -37 -23 Z" fill="#ffd700"/>
+    <path d="M 35 -28 L 37 -23 L 42 -23 L 38 -20 L 40 -15 L 35 -18 L 30 -15 L 32 -20 L 28 -23 L 33 -23 Z" fill="#ffd700"/>
+    
+    <!-- Main Stamp Big Value -->
+    <text x="0" y="-3" text-anchor="middle" class="font-heavy" font-size="28" fill="url(#goldGrad)">₹1,999</text>
+    
+    <!-- Secondary Stamp Tag -->
+    <text x="0" y="20" text-anchor="middle" class="font-bold" font-size="11" fill="#ffffff" letter-spacing="1">FLAT 50% OFF</text>
+
+    <!-- Curved / Pill Banner Ribbon Across Bottom -->
+    <g transform="translate(0, 42)">
+      <rect x="-56" y="-12" width="112" height="22" rx="11" fill="#ffd000" filter="url(#dropShadow3)"/>
+      <text x="0" y="3" text-anchor="middle" class="font-heavy" font-size="11" fill="#000000" letter-spacing="0.5">HOT COMBO</text>
+    </g>
+  </g>
+
+  <!-- Right Side Decorative Digital Graphic -->
+  <g transform="translate(870, 75)" opacity="0.18">
+    <rect x="0" y="0" width="80" height="70" rx="8" fill="none" stroke="#ffffff" stroke-width="2"/>
+    <line x1="15" y1="20" x2="65" y2="20" stroke="#ffffff" stroke-width="3"/>
+    <line x1="15" y1="35" x2="50" y2="35" stroke="#ffffff" stroke-width="3"/>
+    <line x1="15" y1="50" x2="40" y2="50" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="65" cy="50" r="5" fill="#ffd700"/>
+  </g>
+
+</svg>
